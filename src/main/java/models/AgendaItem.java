@@ -52,9 +52,10 @@ public class AgendaItem {
 	 */
 	private String description;
 	/**
-	 * the request this item is attached to
+	 * the application this item is attached to
 	 */
-	// private Request request;
+	@ManyToOne
+	private Application application;
 	/**
 	 * indicates weather the item is public or not
 	 */
@@ -62,12 +63,12 @@ public class AgendaItem {
 	/**
 	 * the transcript for the agenda item
 	 */
-	@OneToOne(mappedBy="agendaItem")
+	@OneToOne(mappedBy = "agendaItem")
 	private ProtocolItem protocolItem;
 	/**
 	 * the ballots referring to the agenda item
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="agendaItem")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "agendaItem")
 	private List<Ballot> ballots;
 
 	public AgendaItem() {
@@ -97,13 +98,13 @@ public class AgendaItem {
 		this.description = description;
 	}
 
-	// public Request getRequest() {
-	// return request;
-	// }
-	//
-	// public void setRequest(Request request) {
-	// this.request = request;
-	// }
+	public Application getApplication() {
+		return application;
+	}
+
+	public void setApplication(Application application) {
+		this.application = application;
+	}
 
 	public Boolean getPubliclyAccessable() {
 		return publiclyAccessable;

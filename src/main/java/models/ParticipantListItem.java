@@ -37,7 +37,8 @@ public class ParticipantListItem {
 	/**
 	 * holds the participant
 	 */
-	// private User participant;
+	@ManyToOne
+	private User participant;
 	/**
 	 * specifies if a participant was present and in which role. can be A,E,U,G
 	 * A means attendant or present E means excused absent U means unexcused
@@ -65,13 +66,13 @@ public class ParticipantListItem {
 		this.participantList = participantList;
 	}
 
-	// public User getParticipant() {
-	// return participant;
-	// }
-	//
-	// public void setParticipant(User participant) {
-	// this.participant = participant;
-	// }
+	 public User getParticipant() {
+	 return participant;
+	 }
+	
+	 public void setParticipant(User participant) {
+	 this.participant = participant;
+	 }
 
 	public Character getPerticipationRole() {
 		return perticipationRole;

@@ -20,6 +20,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Decision {
@@ -35,7 +36,11 @@ public class Decision {
 	 * can be be <i>A</i> for approved or <i>R</i> for rejected
 	 */
 	private Character status;
-	// private Request request; //TODO decomment
+	/**
+	 * the application to which the decision belongs (may be empty)
+	 */
+	@OneToOne(mappedBy="decision")
+	private Application application;
 	/**
 	 * holds comments and restrictions
 	 */
@@ -60,13 +65,13 @@ public class Decision {
 		this.status = status;
 	}
 
-	// public request getRequest() {
-	// return request;
-	// }
-	//
-	// public void setRequest(Request request) {
-	// this.request = request;
-	// }
+	public Application getApplication() {
+		return application;
+	}
+
+	public void setApplication(Application application) {
+		this.application = application;
+	}
 
 	public String getComment() {
 		return comment;

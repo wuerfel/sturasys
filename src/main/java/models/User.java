@@ -109,6 +109,9 @@ public class User {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private List<Account> accounts;
 	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="participant")
+	private List<ParticipantListItem> participationList;
+	
 	public String getFirstName() {
 		return firstName;
 	}
