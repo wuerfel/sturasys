@@ -20,6 +20,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Application {
@@ -67,6 +70,7 @@ public class Application {
 	/**
 	 * the applicant who's placed this application
 	 */
+	@ManyToOne
 	private User applicant;
 
 	/**
@@ -86,6 +90,10 @@ public class Application {
 	 * the duration of this event
 	 */
 	private Long duration;
+	
+	@OneToOne
+	@JoinColumn(name="FINANCEPLAN_ID", unique=true, nullable=true, updatable=true)
+	private FinancePlan financiation;
 
 	public Application() {
 	}
