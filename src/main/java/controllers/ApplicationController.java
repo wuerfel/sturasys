@@ -16,75 +16,79 @@
 
 package controllers;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
-import models.GuestbookEntry;
+import utils.DAOController;
+import models.User;
 import ninja.Result;
 import ninja.Results;
 import ninja.Router;
 import ninja.i18n.Lang;
 
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.google.inject.Singleton;
 import com.google.inject.persist.Transactional;
 
 @Singleton
 public class ApplicationController {
 
-    /**
-     * This is the system wide logger. You can still use any config you like. Or
-     * create your own custom logger.
-     * 
-     * But often this is just a simple solution:
-     */
-    @Inject
-    public org.slf4j.Logger logger;
-    
-    @Inject
-    Router router;
+	/**
+	 * This is the system wide logger. You can still use any config you like. Or
+	 * create your own custom logger.
+	 * 
+	 * But often this is just a simple solution:
+	 */
+	@Inject
+	public org.slf4j.Logger logger;
 
-    @Inject
-    Lang lang;
-    
-    @Inject 
-    Provider<EntityManager> entitiyManagerProvider;
-    
-    @Transactional
-    public Result getIndex() {
-                
-        EntityManager entityManager = entitiyManagerProvider.get();
-            
-        Query q = entityManager.createQuery("SELECT x FROM GuestbookEntry x");
-        List<GuestbookEntry> guestbookEntries = (List<GuestbookEntry>) q.getResultList();
-        
-        String postRoute = router.getReverseRoute(ApplicationController.class, "postIndex");
-        
-        return Results
-                .html()
-                .render("guestbookEntries", guestbookEntries).
-                render("postRoute", postRoute);
+	@Inject
+	Router router;
 
-        
-    }
-    
-    
-    @Transactional
-    public Result postIndex(GuestbookEntry guestbookEntry) {
-        
-        logger.info("In postRoute");        
-        
-        EntityManager entityManager = entitiyManagerProvider.get();
-        
-        entityManager.persist(guestbookEntry);
+	@Inject
+	Lang lang;
+	
+	@Inject
+	DAOController dao;
 
-        
-        return Results.redirect(router.getReverseRoute(ApplicationController.class, "getIndex"));
+	public Result getIndex() {
+		
+		User u = new User();
+		u.setCity("");
+		u.setEmail("email");
+		u.setFirstName("firstName");
+		u.setMatricleNo("matricleNo");
+		u.setPassword("password");
+		u.setPostal("e");
+		u.setRole(1);
+		u.setStreet("street");
+		u.setStreetNo("streetNo");
+		u.setSurName("surName");
+		u.setTelephoneNo("12");
+		
+		User u2 = new User();
+		u2.setCity("ww");
+		u2.setEmail("emaiwwl");
+		u2.setFirstName("firstwwName");
+		u2.setMatricleNo("matrwwicleNo");
+		u2.setPassword("passwwword");
+		u2.setPostal("ew");
+		u2.setRole(1);
+		u2.setStreet("strweet");
+		u2.setStreetNo("stwreetNo");
+		u2.setSurName("surNwame");
+		u2.setTelephoneNo("1w2");
+		dao.<User>persist(u);
+		dao.<User>persist(u2);
+		dao.<User>remove(u);
+		User returned = dao.getSingleElement(User.class, u2.getId());
+		System.out.println(returned);
+		return Results.html();
 
-    }
+	}
 
+	@Transactional
+	public Result postIndex() {
+
+		logger.info("In postRoute");
+		return Results.redirect("/");
+	}
 
 }
