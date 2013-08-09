@@ -20,6 +20,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ProtocolItem {
@@ -39,6 +40,7 @@ public class ProtocolItem {
 	/**
 	 * the agenda item the protocol refers to
 	 */
+	@OneToOne
 	private AgendaItem agendaItem;
 
 	public Long getTimestamp() {

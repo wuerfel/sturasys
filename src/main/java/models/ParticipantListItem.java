@@ -20,6 +20,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ParticipantListItem {
@@ -31,6 +32,7 @@ public class ParticipantListItem {
 	/**
 	 * the list to which the item belongs
 	 */
+	@ManyToOne
 	private ParticipantList participantList;
 	/**
 	 * holds the participant

@@ -16,10 +16,16 @@
 
 package models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class AgendaItem {
@@ -31,6 +37,7 @@ public class AgendaItem {
 	/**
 	 * the agenda the item belongs to
 	 */
+	@ManyToOne
 	private Agenda agenda;
 	/**
 	 * the order number within the agenda
@@ -52,6 +59,16 @@ public class AgendaItem {
 	 * indicates weather the item is public or not
 	 */
 	private Boolean publiclyAccessable;
+	/**
+	 * the transcript for the agenda item
+	 */
+	@OneToOne(mappedBy="agendaItem")
+	private ProtocolItem protocolItem;
+	/**
+	 * the ballots referring to the agenda item
+	 */
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="agendaItem")
+	private List<Ballot> ballots;
 
 	public AgendaItem() {
 	}
@@ -102,6 +119,22 @@ public class AgendaItem {
 
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
+	}
+
+	public ProtocolItem getProtocolItem() {
+		return protocolItem;
+	}
+
+	public void setProtocolItem(ProtocolItem protocolItem) {
+		this.protocolItem = protocolItem;
+	}
+
+	public List<Ballot> getBallots() {
+		return ballots;
+	}
+
+	public void setBallots(List<Ballot> ballots) {
+		this.ballots = ballots;
 	}
 
 }

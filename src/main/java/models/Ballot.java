@@ -20,6 +20,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Ballot {
@@ -39,6 +40,7 @@ public class Ballot {
 	/**
 	 * the agenda item which the vote has been held
 	 */
+	@ManyToOne
 	private AgendaItem agendaItem;
 	/**
 	 * the number of votes for yes

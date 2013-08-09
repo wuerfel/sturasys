@@ -16,10 +16,15 @@
 
 package models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Agenda {
@@ -39,6 +44,16 @@ public class Agenda {
 	 * the place of the meeting
 	 */
 	private String place;
+	/**
+	 * holds the respective items of the agenda
+	 */
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="agenda")
+	private List<AgendaItem> items;
+	/**
+	 * holds the list of participants
+	 */
+	@OneToOne
+	private ParticipantList participants;
 
 	public Long getStartingTimestamp() {
 		return startingTimestamp;
@@ -62,6 +77,22 @@ public class Agenda {
 
 	public void setPlace(String place) {
 		this.place = place;
+	}
+
+	public List<AgendaItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<AgendaItem> items) {
+		this.items = items;
+	}
+
+	public ParticipantList getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(ParticipantList participants) {
+		this.participants = participants;
 	}
 
 	public Agenda() {

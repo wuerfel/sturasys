@@ -16,10 +16,15 @@
 
 package models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ParticipantList {
@@ -27,13 +32,20 @@ public class ParticipantList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-	
+
 	/**
 	 * the agenda of the meeting to which the participants participated
 	 */
+	@OneToOne(mappedBy="participants")
 	private Agenda agenda;
-		
-	public ParticipantList() {}
+	/**
+	 * holds the respective participants
+	 */
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="participantList")
+	private List<ParticipantListItem> items;
+
+	public ParticipantList() {
+	}
 
 	public Agenda getAgenda() {
 		return agenda;
@@ -42,7 +54,13 @@ public class ParticipantList {
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
 	}
-	
-	
+
+	public List<ParticipantListItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ParticipantListItem> items) {
+		this.items = items;
+	}
 
 }
