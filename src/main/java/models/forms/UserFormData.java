@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package models;
+package models.forms;
 
 import java.util.List;
 
@@ -25,15 +25,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import models.Account;
+import models.Application;
+import models.ParticipantListItem;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
-public class User
-{
+public class UserFormData {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
 
 	/**
 	 * the user's first name
@@ -79,168 +83,137 @@ public class User
 	 * the user's email-address
 	 */
 	private String email;
-
-	public Long getId()
-	{
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id)
-	{
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public List<Application> getApplications()
-	{
+	public List<Application> getApplications() {
 		return applications;
 	}
 
-	public void setApplications(List<Application> applications)
-	{
+	public void setApplications(List<Application> applications) {
 		this.applications = applications;
 	}
 
-	public List<Account> getAccounts()
-	{
+	public List<Account> getAccounts() {
 		return accounts;
 	}
 
-	public void setAccounts(List<Account> accounts)
-	{
+	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "applicant")
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="applicant")
 	private List<Application> applications;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private List<Account> accounts;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "participant")
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="participant")
 	private List<ParticipantListItem> participationList;
-
-	public String getFirstName()
-	{
+	
+	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName)
-	{
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public String getSurName()
-	{
+	public String getSurName() {
 		return surName;
 	}
 
-	public void setSurName(String surName)
-	{
+	public void setSurName(String surName) {
 		this.surName = surName;
 	}
 
-	public String getMatricleNo()
-	{
+	public String getMatricleNo() {
 		return matricleNo;
 	}
 
-	public void setMatricleNo(String matricleNo)
-	{
+	public void setMatricleNo(String matricleNo) {
 		this.matricleNo = matricleNo;
 	}
 
-	public Integer getRole()
-	{
+	public Integer getRole() {
 		return role;
 	}
 
-	public void setRole(Integer role)
-	{
+	public void setRole(Integer role) {
 		this.role = role;
 	}
 
-	public String getPassword()
-	{
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password)
-	{
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public String getTelephoneNo()
-	{
+	public String getTelephoneNo() {
 		return telephoneNo;
 	}
 
-	public void setTelephoneNo(String telephoneNo)
-	{
+	public void setTelephoneNo(String telephoneNo) {
 		this.telephoneNo = telephoneNo;
 	}
 
-	public String getPostal()
-	{
+	public String getPostal() {
 		return postal;
 	}
 
-	public void setPostal(String postal)
-	{
+	public void setPostal(String postal) {
 		this.postal = postal;
 	}
 
-	public String getStreet()
-	{
+	public String getStreet() {
 		return street;
 	}
 
-	public void setStreet(String street)
-	{
+	public void setStreet(String street) {
 		this.street = street;
 	}
 
-	public String getCity()
-	{
+	public String getCity() {
 		return city;
 	}
 
-	public void setCity(String city)
-	{
+	public void setCity(String city) {
 		this.city = city;
 	}
 
-	public String getStreetNo()
-	{
+	public String getStreetNo() {
 		return streetNo;
 	}
 
-	public void setStreetNo(String streetNo)
-	{
+	public void setStreetNo(String streetNo) {
 		this.streetNo = streetNo;
 	}
 
-	public User()
-	{
+	public UserFormData() {
 	}
 
-	public String getEmail()
-	{
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email)
-	{
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public void hashPassword(String plainPass)
-	{
+	public void hashPassword(String plainPass) {
 		String crypt = BCrypt.hashpw(plainPass, BCrypt.gensalt());
 		this.setPassword(crypt);
 	}
 
-	public boolean checkPw(String passWord)
-	{
+	public boolean checkPw(String passWord) {
 		return BCrypt.checkpw(passWord, this.getPassword());
 	}
 
