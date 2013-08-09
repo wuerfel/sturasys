@@ -27,7 +27,8 @@ import com.google.inject.Singleton;
 import com.google.inject.persist.Transactional;
 
 @Singleton
-public class DAOController {
+public class DAOController
+{
 
 	@Inject
 	public org.slf4j.Logger logger;
@@ -36,7 +37,8 @@ public class DAOController {
 	Provider<EntityManager> entitiyManagerProvider;
 
 	@Transactional
-	public <T> void persist(T bean) {
+	public <T> void persist(T bean)
+	{
 
 		EntityManager entityManager = entitiyManagerProvider.get();
 		entityManager.persist(bean);
@@ -44,7 +46,8 @@ public class DAOController {
 	}
 
 	@Transactional
-	public <T> void merge(T bean) {
+	public <T> void merge(T bean)
+	{
 
 		EntityManager entityManager = entitiyManagerProvider.get();
 		entityManager.merge(bean);
@@ -52,30 +55,33 @@ public class DAOController {
 	}
 
 	@Transactional
-	public <T> void remove(T bean) {
+	public <T> void remove(T bean)
+	{
 
 		EntityManager entityManager = entitiyManagerProvider.get();
-		entityManager.remove(entityManager.contains(bean)? bean : entityManager.merge(bean));
+		entityManager.remove(entityManager.contains(bean) ? bean : entityManager.merge(bean));
 
 	}
 
 	@Transactional
-	public <T> List<T> getAllElements(Class<T> clazz) {
+	public <T> List<T> getAllElements(Class<T> clazz)
+	{
 
 		EntityManager entityManager = entitiyManagerProvider.get();
-		Query q = entityManager.createQuery("SELECT x FROM "+clazz.getSimpleName());
+		Query q = entityManager.createQuery("SELECT x FROM " + clazz.getSimpleName());
 		return (List<T>) q.getResultList();
 
 	}
-	
+
 	@Transactional
-	public <T> T getSingleElement(Class<T> clazz, Long id) {
+	public <T> T getSingleElement(Class<T> clazz, Long id)
+	{
 
 		EntityManager entityManager = entitiyManagerProvider.get();
 
-		Query q = entityManager.createQuery("Select x FROM "+clazz.getSimpleName()+" x WHERE ID="+id);
+		Query q = entityManager.createQuery("Select x FROM " + clazz.getSimpleName() + " x WHERE ID=" + id);
 		return (T) q.getResultList().get(0);
 
 	}
-	
+
 }
