@@ -27,26 +27,40 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class FinancePlan {
+public class ParticipantList {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-	
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="financePlan")
-	List<FinancePlanItem> revenues;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="financePlan")
-	List<FinancePlanItem> outgoings;
-	
-	/**
-	 * link to the application
-	 */
-	@OneToOne(mappedBy="financiation")
-	Application application;
 
-	public FinancePlan() {
+	/**
+	 * the agenda of the meeting to which the participants participated
+	 */
+	@OneToOne(mappedBy="participants")
+	private Agenda agenda;
+	/**
+	 * holds the respective participants
+	 */
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="participantList")
+	private List<ParticipantListItem> items;
+
+	public ParticipantList() {
+	}
+
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
+	}
+
+	public List<ParticipantListItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ParticipantListItem> items) {
+		this.items = items;
 	}
 
 }

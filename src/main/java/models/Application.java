@@ -16,12 +16,16 @@
 
 package models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -72,12 +76,10 @@ public class Application {
 	 */
 	@ManyToOne
 	private User applicant;
-
 	/**
 	 * the amount of money provided by the council
 	 */
 	private String accommodation;
-
 	/**
 	 * the place where the event's taking place
 	 */
@@ -90,10 +92,19 @@ public class Application {
 	 * the duration of this event
 	 */
 	private Long duration;
-	
 	@OneToOne
-	@JoinColumn(name="FINANCEPLAN_ID", unique=true, nullable=true, updatable=true)
+	@JoinColumn(name = "FINANCEPLAN_ID", unique = true, nullable = true, updatable = true)
 	private FinancePlan financiation;
+	/**
+	 * the decision made about the application (may be empty)
+	 */
+	@OneToOne
+	private Decision decision;
+	/**
+	 * the agenda items in which the application is discussed
+	 */
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="application")
+	private List<AgendaItem> agendaItems;
 
 	public Application() {
 	}
@@ -208,6 +219,30 @@ public class Application {
 
 	public void setDuration(Long duration) {
 		this.duration = duration;
+	}
+
+	public FinancePlan getFinanciation() {
+		return financiation;
+	}
+
+	public void setFinanciation(FinancePlan financiation) {
+		this.financiation = financiation;
+	}
+
+	public Decision getDecision() {
+		return decision;
+	}
+
+	public void setDecision(Decision decision) {
+		this.decision = decision;
+	}
+
+	public List<AgendaItem> getAgendaItems() {
+		return agendaItems;
+	}
+
+	public void setAgendaItems(List<AgendaItem> agendaItems) {
+		this.agendaItems = agendaItems;
 	}
 
 }

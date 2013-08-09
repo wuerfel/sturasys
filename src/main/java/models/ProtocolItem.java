@@ -16,37 +16,58 @@
 
 package models;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class FinancePlan {
+public class ProtocolItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-	
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="financePlan")
-	List<FinancePlanItem> revenues;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="financePlan")
-	List<FinancePlanItem> outgoings;
-	
-	/**
-	 * link to the application
-	 */
-	@OneToOne(mappedBy="financiation")
-	Application application;
 
-	public FinancePlan() {
+	/**
+	 * the time the agenda item was discussed
+	 */
+	private Long timestamp;
+	/**
+	 * the transcript of the agenda item
+	 */
+	private String transcript;
+	/**
+	 * the agenda item the protocol refers to
+	 */
+	@OneToOne
+	private AgendaItem agendaItem;
+
+	public Long getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Long timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public String getTranscript() {
+		return transcript;
+	}
+
+	public void setTranscript(String transcript) {
+		this.transcript = transcript;
+	}
+
+	public AgendaItem getAgendaItem() {
+		return agendaItem;
+	}
+
+	public void setAgendaItem(AgendaItem agendaItem) {
+		this.agendaItem = agendaItem;
+	}
+
+	public ProtocolItem() {
 	}
 
 }
