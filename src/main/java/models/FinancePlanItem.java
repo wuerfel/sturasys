@@ -20,6 +20,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class FinancePlanItem {
@@ -36,6 +37,9 @@ public class FinancePlanItem {
 	 * the monetary amount of this point
 	 */
 	private Integer amount;
+	
+	@ManyToOne
+	private FinancePlan financePlan;
 
 	public FinancePlanItem() {
 	}

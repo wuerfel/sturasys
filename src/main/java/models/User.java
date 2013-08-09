@@ -16,10 +16,14 @@
 
 package models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -74,7 +78,13 @@ public class User {
 	 * the user's email-address
 	 */
 	private String email;
-
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="applicant")
+	private List<Application> applications;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	private List<Account> accounts;
+	
 	public String getFirstName() {
 		return firstName;
 	}
