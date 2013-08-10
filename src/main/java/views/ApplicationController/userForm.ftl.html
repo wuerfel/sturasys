@@ -1,0 +1,70 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "Home page">
+
+<form class="form-horizontal" method="post" action="/user">  
+        <fieldset>  
+          <legend>TODO:implement i18nTextHereEverywhere</legend>  
+          <div class="control-group">  
+            <label class="control-label" for="foreName">forename</label>  
+            <div class="controls">  
+              <input type="text" class="input" id="foreName" name="foreName">   
+            </div>  
+          </div>             
+          <div class="control-group">  
+            <label class="control-label" for="surName">surname</label>  
+            <div class="controls">  
+              <input type="text" class="input" id="surName" name="surName">   
+            </div>  
+          </div>             
+          <div class="control-group">  
+            <label class="control-label" for="email">email</label>  
+            <div class="controls">  
+              <input type="text" class="input" id="email" name="email">   
+            </div>  
+          </div>             
+          <div class="control-group">  
+            <label class="control-label" for="matricle">matricle</label>  
+            <div class="controls">  
+              <input type="text" class="input" id="matricle" name="matricleNo">   
+            </div>  
+          </div>             
+          <div class="control-group">  
+            <label class="control-label" for="telephone">Telphoneno</label>  
+            <div class="controls">  
+              <input type="text" class="input" id="telphoneno" name="telephoneNo">   
+            </div>  
+          </div>
+          <div class="control-group">  
+            <label class="control-label" for="postal">postal</label>  
+            <div class="controls">  
+              <input type="text" class="input" id="postal" name="postal" name="postal">   
+            </div>  
+          </div>
+		<div class="control-group">  
+            <label class="control-label" for="street">street</label>  
+            <div class="controls">  
+              <input type="text" class="input" id="street" name="street">   
+            </div>  
+          </div>
+             <div class="control-group">  
+            <label class="control-label" for="city">city</label>  
+            <div class="controls">  
+              <input type="text" class="input" id="city" name="city">   
+            </div>  
+          </div>  
+                       <div class="control-group">  
+            <label class="control-label" for="streetNo">streetno</label>  
+            <div class="controls">  
+              <input type="text" class="input " id="streetNo" name="streetNo">   
+            </div>  
+          </div>  
+
+          <div class="form-actions">  
+            <button type="submit" class="btn btn-primary">Save changes</button>  
+            <button class="btn">Cancel</button>  
+          </div>  
+        </fieldset>  
+</form>
+
+
+</@layout.myLayout>

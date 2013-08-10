@@ -27,11 +27,8 @@ import controllers.ApplicationController;
 
 public class Routes implements ApplicationRoutes {
     
-    private NinjaProperties ninjaProperties;
-
     @Inject
     public Routes(NinjaProperties ninjaProperties) {
-        this.ninjaProperties = ninjaProperties;
 
     }
 
@@ -50,7 +47,7 @@ public class Routes implements ApplicationRoutes {
         // default routes
         router.GET().route("/").with(ApplicationController.class, "getIndex");
         router.POST().route("/").with(ApplicationController.class, "postIndex");
-      
+        router.GET().route("/user").with(ApplicationController.class, "userForm");
 
         router.GET().route("/assets/.*").with(AssetsController.class, "serve");
     }

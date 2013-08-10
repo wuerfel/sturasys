@@ -83,6 +83,10 @@ public class ApplicationController {
 		return Results.html();
 
 	}
+	
+	public Result userForm(){
+		return Results.html();
+	}
 
 	@Transactional
 	public Result postIndex() {
