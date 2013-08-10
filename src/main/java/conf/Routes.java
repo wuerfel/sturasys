@@ -49,6 +49,7 @@ public class Routes implements ApplicationRoutes {
 
         // default routes
         router.GET().route("/").with(ApplicationController.class, "getIndex");
+        router.GET().route("/agenda").with(ApplicationController.class, "agendaForm");
         router.POST().route("/").with(ApplicationController.class, "postIndex");
       
 

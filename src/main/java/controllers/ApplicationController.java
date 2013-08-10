@@ -90,5 +90,11 @@ public class ApplicationController {
 		logger.info("In postRoute");
 		return Results.redirect("/");
 	}
+	
+	public Result agendaForm() {
+
+		return Results.html();
+	}
+
 
 }
