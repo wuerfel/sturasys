@@ -1,0 +1,108 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "AccountForm">
+
+<div class="container">
+<form class="form-horizontal" method="post" action="/account">  
+        <fieldset>  
+          <legend>${i18n("applicationForm_Title")}</legend>
+          <div class="row"> 
+          <div class="col-6">
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="title">${i18n("applicationForm_Label_Title")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="title" name="title">   
+            </div>  
+          </div>             
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="description">${i18n("applicationForm_Label_Description")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="description" name="description">   
+            </div>  
+          </div>     
+          <!-- TODO: not always visible/configurable -->
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="status">${i18n("applicationForm_Label_Status")}</label>  
+            <div class="col col-lg-8">  
+              <select class="form-control" id="status" name="status">
+              	<option value="">${i18n("applicationForm_Label_Status_InProcess")}</option>
+              	<option value="">${i18n("applicationForm_Label_Status_OnAgenda")}</option>
+              	<option value="">${i18n("applicationForm_Label_Status_Accepted")}</option>
+              	<option value="">${i18n("applicationForm_Label_Status_Declined")}</option>
+              </select>
+            </div>  
+          </div>
+          <!-- end todo -->          
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="noOfStudents">${i18n("applicationForm_Label_NoOfStudents")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="noOfStudents" name="noOfStudents">   
+            </div>  
+          </div>             
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="noOfParticipants">${i18n("applicationForm_Label_NoOfParticipants")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="noOfParticipants" name="noOfParticipants">   
+            </div>  
+          </div> 
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="fee">${i18n("applicationForm_Label_Fee")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="fee" name="fee">   
+            </div>  
+          </div> 
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="reqFundingSum">${i18n("applicationForm_Label_ReqFundingSum")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="reqFundingSum" name="reqFundingSum">   
+            </div>  
+          </div>
+          <!-- TODO: not always visible -->
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="accommodation">${i18n("applicationForm_Label_Accommodation")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="accommodation" name="accommodation">   
+            </div>  
+          </div>
+          <!-- end todo -->
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="targetAudience">${i18n("applicationForm_Label_TargetAudience")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="targetAudience" name="targetAudience">   
+            </div>  
+          </div> 
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="placeOfEvent">${i18n("applicationForm_Label_placeOfEvent")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="placeOfEvent" name="placeOfEvent">   
+            </div>  
+          </div> 
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="startTime">${i18n("applicationForm_Label_startTime")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="startTime" name="startTime">   
+            </div>  
+          </div> 
+           <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="duration">${i18n("applicationForm_Label_duration")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="duration" name="duration">   
+            </div>  
+          </div> 
+ 
+		</div>
+		</div>
+<div class="row">
+	<div class="col-2 col-lg-4"></div>
+    <div class="col-lg-6">  
+      <button type="submit" class="btn btn-primary">${i18n("accountForm_Button_Submit")}</button>  
+      <button class="btn">${i18n("accountForm_Button_Reset")}</button>  
+    </div>
+   	<div class="col-lg-2"></div>  
+</div>
+
+        </fieldset>  
+</form>
+
+</div>
+
+</@layout.myLayout>

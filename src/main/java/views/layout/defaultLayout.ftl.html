@@ -29,9 +29,14 @@
     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
   <body>
-
     <div class="container">
-        
+        <#if flash_error??>
+        	<div class="alert alert-danger">${flash_error}</div>
+		</#if>
+		
+		<#if flash_success??>
+		        <div class="alert alert-danger">${flash_success}</div>
+		</#if>
         <#include "header.ftl.html"/>
 
         <#nested/>
