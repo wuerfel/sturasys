@@ -46,11 +46,12 @@ public class Routes implements ApplicationRoutes {
 
         // default routes
         router.GET().route("/").with(ApplicationController.class, "getIndex");
-        router.POST().route("/").with(ApplicationController.class, "postIndex");
         router.GET().route("/user").with(ApplicationController.class, "userForm");
-        router.POST().route("/user").with(ApplicationController.class, "userPostForm");
+        router.POST().route("/user").with(ApplicationController.class, "postUserForm");
         router.GET().route("/account").with(ApplicationController.class, "accountForm");
+        router.POST().route("/account").with(ApplicationController.class, "postAccountForm");
         router.GET().route("/application").with(ApplicationController.class, "applicationForm");
+        router.POST().route("/application").with(ApplicationController.class, "postApplicationForm");
         router.GET().route("/financeplan").with(ApplicationController.class, "financePlanForm");
         router.GET().route("/assets/.*").with(AssetsController.class, "serve");
     }

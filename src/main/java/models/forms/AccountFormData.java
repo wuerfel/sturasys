@@ -14,26 +14,18 @@
  * limitations under the License.
  */
 
-package models;
+package models.forms;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import models.Account;
 
-@Entity
-public class Account {
+public class AccountFormData
+{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-	
 	/**
-	 * the number of this bank account 
+	 * the number of this bank account
 	 */
 	private long accountNumber;
-	
+
 	/**
 	 * the bank identifier code
 	 */
@@ -49,54 +41,64 @@ public class Account {
 	 */
 	private String iban;
 
-	/**
-	 * the user related to this account
-	 */
-	
-	@ManyToOne
-	private User user;
+	public AccountFormData()
+	{
+	}
 
-	public long getAccountNumber() {
+	public long getAccountNumber()
+	{
 		return accountNumber;
 	}
 
-	public void setAccountNumber(long accountNumber) {
+	public void setAccountNumber(long accountNumber)
+	{
 		this.accountNumber = accountNumber;
 	}
 
-	public String getBankCode() {
+	public String getBankCode()
+	{
 		return bankCode;
 	}
 
-	public void setBankCode(String bankCode) {
+	public void setBankCode(String bankCode)
+	{
 		this.bankCode = bankCode;
 	}
 
-	public String getBank() {
+	public String getBank()
+	{
 		return bank;
 	}
 
-	public void setBank(String bank) {
+	public void setBank(String bank)
+	{
 		this.bank = bank;
 	}
 
-	public String getIban() {
+	public String getIban()
+	{
 		return iban;
 	}
 
-	public void setIban(String iban) {
+	public void setIban(String iban)
+	{
 		this.iban = iban;
 	}
 
-	public User getUser() {
-		return user;
+	public String printOut()
+	{
+		return accountNumber + ", " + bankCode + ", " + bank + ", " + iban;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+	public Account getAsAccount()
+	{
+		Account account = new Account();
+		account.setAccountNumber(accountNumber);
+		account.setBank(bank);
+		account.setBankCode(bankCode);
+		account.setIban(iban);
 
-	public Account() {
+		return account;
 	}
 
 }

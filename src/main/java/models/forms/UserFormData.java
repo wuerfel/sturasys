@@ -19,10 +19,6 @@ package models.forms;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 
@@ -30,19 +26,12 @@ import models.Account;
 import models.Application;
 import models.ParticipantListItem;
 import models.User;
-import ninja.validation.Length;
-
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.mindrot.jbcrypt.BCrypt;
 
-@Entity
 public class UserFormData
 {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
 
 	/**
 	 * the user's first name
@@ -106,16 +95,6 @@ public class UserFormData
 	@NotEmpty
 	@Email
 	private String email;
-
-	public Long getId()
-	{
-		return id;
-	}
-
-	public void setId(Long id)
-	{
-		this.id = id;
-	}
 
 	public List<Application> getApplications()
 	{
@@ -285,10 +264,16 @@ public class UserFormData
 	{
 		return firstName + ", " + surName + ", " + matricleNo + ", " + role + ", " + password + ", ";
 	}
-	
-	public User getAsUser(){
+
+	/**
+	 * Returns this object as an user-object
+	 * 
+	 * @return the form-data as user
+	 */
+	public User getAsUser()
+	{
 		User user = new User();
-		
+
 		user.setFirstName(firstName);
 		user.setCity(city);
 		user.setEmail(email);
@@ -299,9 +284,9 @@ public class UserFormData
 		user.setStreetNo(streetNo);
 		user.setSurName(surName);
 		user.setTelephoneNo(telephoneNo);
-		
+
 		return user;
-		
+
 	}
 
 }
