@@ -1,0 +1,48 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> <@layout.myLayout
+"Home page">
+
+
+<form class="form-horizontal">
+	<fieldset>
+		<legend>${i18n("decisionForm_Title")}</legend>
+		<div class="col-lg-3">
+			<div class="control-group">
+				<label class="control-label" for="decisionNumber">${i18n("decisionForm_Label_DecisionNumber")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="decisionNumber" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="status">${i18n("decisionForm_Label_DecisionStatus")}</label>
+				<div class="controls">
+					<select class="form-control" id="status">
+						<option>${i18n("decisionForm_Option_DecisionStatusNone")}</option>
+						<option>${i18n("decisionForm_Option_DecisionStatusApproved")}</option>
+						<option>${i18n("decisionForm_Option_DecisionStatusRejected")}</option>
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="application">${i18n("decisionForm_Label_ReferredApplication")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="application" />
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary btn-block">${i18n("generic_Button_SaveChanges")}</button>
+				<button type="button" class="btn btn-block">${i18n("generic_Button_Cancel")}</button>
+			</div>
+		</div>
+		<div class="col-lg-9">
+				<div class="control-group">
+					<label class="control-label" for="comment">${i18n("decisionForm_Label_DecisionDescription")}</label>
+					<div class="controls">
+						<textarea class="form-control" rows="11" id="comment"></textarea>
+					</div>
+				</div>
+			</div>
+	</fieldset>
+</form>
+
+
+</@layout.myLayout>

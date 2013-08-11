@@ -25,35 +25,42 @@ import com.google.inject.Inject;
 
 import controllers.ApplicationController;
 
-public class Routes implements ApplicationRoutes {
-    
-    private NinjaProperties ninjaProperties;
+public class Routes implements ApplicationRoutes
+{
 
-    @Inject
-    public Routes(NinjaProperties ninjaProperties) {
-        this.ninjaProperties = ninjaProperties;
+	private NinjaProperties ninjaProperties;
 
-    }
+	@Inject
+	public Routes(NinjaProperties ninjaProperties)
+	{
+		this.ninjaProperties = ninjaProperties;
 
-    /**
-     * Using a (almost) nice DSL we can configure the router.
-     * 
-     * The second argument NinjaModuleDemoRouter contains all routes of a
-     * submodule. By simply injecting it we activate the routes.
-     * 
-     * @param router
-     *            The default router of this application
-     */
-    @Override
-    public void init(Router router) {
+	}
 
-        // default routes
-        router.GET().route("/").with(ApplicationController.class, "getIndex");
-        router.GET().route("/agenda").with(ApplicationController.class, "agendaForm");
-        router.POST().route("/").with(ApplicationController.class, "postIndex");
-      
+	/**
+	 * Using a (almost) nice DSL we can configure the router.
+	 * 
+	 * The second argument NinjaModuleDemoRouter contains all routes of a
+	 * submodule. By simply injecting it we activate the routes.
+	 * 
+	 * @param router
+	 *            The default router of this application
+	 */
+	@Override
+	public void init(Router router)
+	{
 
-        router.GET().route("/assets/.*").with(AssetsController.class, "serve");
-    }
+		// default routes
+		router.GET().route("/").with(ApplicationController.class, "getIndex");
+		router.GET().route("/agenda").with(ApplicationController.class, "agendaForm");
+		router.GET().route("/agendaItem").with(ApplicationController.class, "agendaItemForm");
+		router.GET().route("/decision").with(ApplicationController.class, "decisionForm");
+		router.GET().route("/protocol").with(ApplicationController.class, "protocolForm");
+		router.GET().route("/protocolItem").with(ApplicationController.class, "protocolItemForm");
+		router.GET().route("/ballot").with(ApplicationController.class, "ballotForm");
+		router.POST().route("/").with(ApplicationController.class, "postIndex");
+
+		router.GET().route("/assets/.*").with(AssetsController.class, "serve");
+	}
 
 }

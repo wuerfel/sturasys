@@ -4,57 +4,44 @@
 
 <form class="form-horizontal">
 	<fieldset>
-		<legend>Agenda</legend>
+		<legend>${i18n("agendaForm_Title")}</legend>
 		<div class="row">
-			<div class="col-lg-8 pull-left">
-				<div class="row">
-					<div class="control-group">
-						<label class="control-label" for="startingTimestamp">Starting
-							time:</label>
-						<div class="controls">
-							<input type="text" class="input input-small"
-								id="startingTimestamp" />
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="control-group">
-						<label class="control-label" for="endingTimestamp">Ending
-							time:</label>
-						<div class="controls">
-							<input type="text" class="input input-small" id="endingTimestamp" />
-						</div>
-					</div>
-				</div>
+			<div class="col-lg-3">
 				<div class="row">
 					<div>
-						<label class="control-label" for="place">Place:</label>
+						<label class="control-label" for="place">${i18n("agendaForm_Label_Place")}</label>
 						<div class="controls">
-							<input type="text" class="input input-small" id="place" />
+							<input type="text" class="form-control" id="place" />
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4 pull-right">
+			
+			<div class="col-lg-2">
 				<div class="form-actions">
-					<div class="row">
-						<button class="btn btn-primary">Add agenda item</button>
-					</div>
-					<div class="row">
-						<div class="col-lg-6">
-							<button type="submit" class="btn btn-primary">Save
-								changes</button>
-						</div>
-						<div class="col-lg-6">
-							<button class="btn">Cancel</button>
-						</div>
-					</div>
+					<button type="button" id="agendaForm_Button_AddAgendaItem" class="btn btn-primary btn-block">${i18n("agendaForm_Button_AddAgendaItem")}</button>
+					<button type="submit" class="btn btn-primary btn-block">${i18n("generic_Button_SaveChanges")}</button>
+					<button type="button" class="btn btn-block">${i18n("generic_Button_Cancel")}</button>
 				</div>
 			</div>
-
-
 		</div>
-		<div class="row"></div>
+		<div class="row">
+		<h4>${i18n("agendaForm_SubTitle_AgendaItems")}</h4>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>${i18n("agendaForm_TableHeader_AgendaItem")}</th>
+						<th>${i18n("agendaForm_TableHeader_AgendaItemTitle")}</th>
+						<th>${i18n("agendaForm_TableHeader_AgendaItemPublic")}</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>1</td>
+					<td>a fancy title example</td>
+					<td>YES</td>
+				</tr>
+			</table>
+		</div>
 
 
 

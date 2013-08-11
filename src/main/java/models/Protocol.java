@@ -24,46 +24,66 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Agenda
+public class Protocol
 {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	/**
-	 * the place of the meeting
+	 * the date and time the meeting has started
 	 */
-	private String place;
+	private Long startingTimestamp;
 	/**
-	 * holds the respective items of the agenda
+	 * the date and time the meeting has ended
 	 */
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "agenda")
-	private List<AgendaItem> items;
-	
-	public String getPlace()
+	private Long endingTimestamp;
+	/**
+	 * holds the respective items of the protocol
+	 */
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "protocol")
+	private List<ProtocolItem> items;
+	/**
+	 * holds the list of participants
+	 */
+	@OneToOne
+	private ParticipantList participants;
+
+	public Protocol()
 	{
-		return place;
 	}
 
-	public void setPlace(String place)
+	public Long getStartingTimestamp()
 	{
-		this.place = place;
+		return startingTimestamp;
 	}
 
-	public List<AgendaItem> getItems()
+	public void setStartingTimestamp(Long startingTimestamp)
 	{
-		return items;
+		this.startingTimestamp = startingTimestamp;
 	}
 
-	public void setItems(List<AgendaItem> items)
+	public Long getEndingTimestamp()
 	{
-		this.items = items;
+		return endingTimestamp;
 	}
 
-	public Agenda()
+	public void setEndingTimestamp(Long endingTimestamp)
 	{
+		this.endingTimestamp = endingTimestamp;
+	}
+
+	public ParticipantList getParticipants()
+	{
+		return participants;
+	}
+
+	public void setParticipants(ParticipantList participants)
+	{
+		this.participants = participants;
 	}
 
 }

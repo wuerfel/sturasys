@@ -1,0 +1,72 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> <@layout.myLayout
+"Home page">
+
+
+<form class="form-horizontal">
+	<fieldset>
+		<legend>${i18n("agendaItemForm_Title")}</legend>
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="control-group">
+					<label class="control-label" for="itemNumber">${i18n("agendaItemForm_Label_ItemNumber")}</label>
+					<div class="controls">
+						<input type="text" class="form-control" id="itemNumber" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="title">${i18n("agendaItemForm_Label_ItemTitle")}</label>
+					<div class="controls">
+						<input type="text" class="form-control" id="title" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="application">${i18n("agendaItemForm_Label_ItemApplication")}</label>
+					<div class="controls">
+						<input type="text" class="form-control" id="application" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="publiclyAccessable">${i18n("agendaItemForm_Label_ItemPublicity")}</label>
+					<div class="controls">
+						<input type="text" class="form-control" id="publiclyAccessable" />
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="form-actions">
+					<button type="button" id="agendaForm_Button_AddAgendaItem"
+						class="btn btn-primary btn-block">${i18n("agendaForm_Button_AddAgendaItem")}</button>
+					<button type="submit" class="btn btn-primary btn-block">${i18n("generic_Button_SaveChanges")}</button>
+					<button type="button" class="btn btn-block">${i18n("generic_Button_Cancel")}</button>
+				</div>
+			</div>
+			<div class="col-lg-7">
+				<div class="control-group">
+					<label class="control-label" for="description">${i18n("agendaItemForm_Label_ItemDescription")}</label>
+					<div class="controls">
+						<textarea class="form-control" rows="11" id="description"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h4>${i18n("agendaItemForm_SubTitle_Ballots")}</h4>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>${i18n("agendaItemForm_TableHeader_BallotTitle")}</th>
+					<th>${i18n("agendaItemForm_TableHeader_BallotDescription")}</th>
+					<th>${i18n("agendaItemForm_TableHeader_BallotResult")}</th>
+				</tr>
+			</thead>
+			<tr>
+				<td>a fanch title example</td>
+				<td>a fanch description example</td>
+				<td>0-0-n</td>
+			</tr>
+		</table>
+
+	</fieldset>
+</form>
+
+
+</@layout.myLayout>
