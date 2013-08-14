@@ -20,19 +20,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class ProtocolItem {
+public class ProtocolItem
+{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-
-	/**
-	 * the time the agenda item was discussed
-	 */
-	private Long timestamp;
+	@ManyToOne
+	private Protocol protocol;
 	/**
 	 * the transcript of the agenda item
 	 */
@@ -43,31 +42,38 @@ public class ProtocolItem {
 	@OneToOne
 	private AgendaItem agendaItem;
 
-	public Long getTimestamp() {
-		return timestamp;
+	public Protocol getProtocol()
+	{
+		return protocol;
 	}
 
-	public void setTimestamp(Long timestamp) {
-		this.timestamp = timestamp;
+	public void setProtocol(Protocol protocol)
+	{
+		this.protocol = protocol;
 	}
 
-	public String getTranscript() {
+	public String getTranscript()
+	{
 		return transcript;
 	}
 
-	public void setTranscript(String transcript) {
+	public void setTranscript(String transcript)
+	{
 		this.transcript = transcript;
 	}
 
-	public AgendaItem getAgendaItem() {
+	public AgendaItem getAgendaItem()
+	{
 		return agendaItem;
 	}
 
-	public void setAgendaItem(AgendaItem agendaItem) {
+	public void setAgendaItem(AgendaItem agendaItem)
+	{
 		this.agendaItem = agendaItem;
 	}
 
-	public ProtocolItem() {
+	public ProtocolItem()
+	{
 	}
 
 }

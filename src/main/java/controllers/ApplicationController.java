@@ -28,7 +28,8 @@ import com.google.inject.Singleton;
 import com.google.inject.persist.Transactional;
 
 @Singleton
-public class ApplicationController {
+public class ApplicationController
+{
 
 	/**
 	 * This is the system wide logger. You can still use any config you like. Or
@@ -44,12 +45,13 @@ public class ApplicationController {
 
 	@Inject
 	Lang lang;
-	
+
 	@Inject
 	DAOController dao;
 
-	public Result getIndex() {
-		
+	public Result getIndex()
+	{
+
 		User u = new User();
 		u.setCity("");
 		u.setEmail("email");
@@ -62,7 +64,7 @@ public class ApplicationController {
 		u.setStreetNo("streetNo");
 		u.setSurName("surName");
 		u.setTelephoneNo("12");
-		
+
 		User u2 = new User();
 		u2.setCity("ww");
 		u2.setEmail("emaiwwl");
@@ -75,9 +77,9 @@ public class ApplicationController {
 		u2.setStreetNo("stwreetNo");
 		u2.setSurName("surNwame");
 		u2.setTelephoneNo("1w2");
-		dao.<User>persist(u);
-		dao.<User>persist(u2);
-		dao.<User>remove(u);
+		dao.<User> persist(u);
+		dao.<User> persist(u2);
+		dao.<User> remove(u);
 		User returned = dao.getSingleElement(User.class, u2.getId());
 		System.out.println(returned);
 		return Results.html();
@@ -85,10 +87,58 @@ public class ApplicationController {
 	}
 
 	@Transactional
-	public Result postIndex() {
+	public Result postIndex()
+	{
 
 		logger.info("In postRoute");
 		return Results.redirect("/");
 	}
 
+	public Result agendaForm()
+	{
+
+		return Results.html();
+	}
+
+	public Result agendaItemForm()
+	{
+
+		return Results.html();
+	}
+
+	public Result decisionForm()
+	{
+
+		return Results.html();
+	}
+
+	public Result protocolForm()
+	{
+
+		return Results.html();
+	}
+
+	public Result ballotForm()
+	{
+
+		return Results.html();
+	}
+	
+	public Result protocolItemForm()
+	{
+
+		return Results.html();
+	}
+	
+	public Result participantListForm()
+	{
+
+		return Results.html();
+	}
+	
+	public Result participantListItemForm()
+	{
+
+		return Results.html();
+	}
 }

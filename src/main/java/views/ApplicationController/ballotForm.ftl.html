@@ -1,0 +1,57 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> <@layout.myLayout
+"Home page">
+
+
+<form class="form-horizontal">
+	<fieldset>
+		<legend>${i18n("ballotForm_Title")}</legend>
+		<div class="col-lg-3">
+			<div class="control-group">
+				<label class="control-label" for="title">${i18n("ballotForm_Label_BallotTitle")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="title" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="agendaItem">${i18n("ballotForm_Label_AgendaItem")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="agendaItem" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="voteCountYes">${i18n("ballotForm_Label_VoteCountYes")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="voteCountYes" />
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="voteCountNo">${i18n("ballotForm_Label_VoteCountNo")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="voteCountNo" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="voteCountAbstention">${i18n("ballotForm_Label_VoteCountAbstention")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="voteCountAbstention" />
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary btn-block">${i18n("generic_Button_SaveChanges")}</button>
+				<button type="button" class="btn btn-block">${i18n("generic_Button_Cancel")}</button>
+			</div>
+		</div>
+		<div class="col-lg-9">
+				<div class="control-group">
+					<label class="control-label" for="description">${i18n("ballotForm_Label_BallotDescription")}</label>
+					<div class="controls">
+						<textarea class="form-control" rows="11" id="description"></textarea>
+					</div>
+				</div>
+			</div>
+	</fieldset>
+</form>
+
+
+</@layout.myLayout>

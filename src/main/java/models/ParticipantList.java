@@ -37,7 +37,7 @@ public class ParticipantList {
 	 * the agenda of the meeting to which the participants participated
 	 */
 	@OneToOne(mappedBy="participants")
-	private Agenda agenda;
+	private Protocol protocol;
 	/**
 	 * holds the respective participants
 	 */
@@ -47,12 +47,12 @@ public class ParticipantList {
 	public ParticipantList() {
 	}
 
-	public Agenda getAgenda() {
-		return agenda;
+	public Protocol getProtocol() {
+		return protocol;
 	}
 
-	public void setAgenda(Agenda agenda) {
-		this.agenda = agenda;
+	public void setProtocol(Protocol protocol) {
+		this.protocol = protocol;
 	}
 
 	public List<ParticipantListItem> getItems() {

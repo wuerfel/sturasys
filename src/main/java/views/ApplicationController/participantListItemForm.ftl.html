@@ -1,0 +1,50 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> <@layout.myLayout
+"Home page">
+
+
+<form class="form-horizontal">
+	<fieldset>
+		<legend>${i18n("participantListItemForm_Title")}</legend>
+		<div class="col-lg-3">
+			<div class="control-group">
+				<label class="control-label" for="participant">${i18n("participantListItemForm_Label_ParticipantId")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="participant" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="perticipationRole">${i18n("participantListItemForm_Label_ParticipantRole")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="perticipationRole" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="arrivalTime">${i18n("participantListItemForm_Label_ArrivalTime")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="arrivalTime" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="leavingTime">${i18n("participantListItemForm_Label_LeavingTime")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="leavingTime" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="comment">${i18n("participantListItemForm_Label_Comment")}</label>
+				<div class="controls">
+					<textarea class="form-control" id="comment"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3">
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary btn-block">${i18n("generic_Button_SaveChanges")}</button>
+				<button type="button" class="btn btn-block">${i18n("generic_Button_Cancel")}</button>
+			</div>
+		</div>
+	</fieldset>
+</form>
+
+
+</@layout.myLayout>

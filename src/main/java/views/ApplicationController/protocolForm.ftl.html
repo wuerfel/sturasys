@@ -1,0 +1,74 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> <@layout.myLayout
+"Home page">
+
+
+<form class="form-horizontal">
+	<fieldset>
+		<legend>${i18n("protocolForm_Title")}</legend>
+		<div class="row">
+			<div class="col-lg-3">
+				<div>
+					<label class="control-label" for="startingTimestamp">${i18n("protocolForm_Label_StartingTime")}</label>
+					<div class="controls">
+						<input type="text" class="form-control" id="startingTimestamp" />
+					</div>
+				</div>
+				<div>
+					<label class="control-label" for="endingTimestamp">${i18n("protocolForm_Label_EndingTime")}</label>
+					<div class="controls">
+						<input type="text" class="form-control" id="endingTimestamp" />
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="form-actions">
+					<button type="button" id="protocolForm_Button_AddProtocolItem"
+						class="btn btn-primary btn-block">${i18n("protocolForm_Button_AddProtocolItem")}</button>
+					<button type="button" id="protocolForm_Button_AddParticipant"
+						class="btn btn-primary btn-block">${i18n("protocolForm_Button_AddParticipant")}</button>
+					<button type="submit" class="btn btn-primary btn-block">${i18n("generic_Button_SaveChanges")}</button>
+					<button type="button" class="btn btn-block">${i18n("generic_Button_Cancel")}</button>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<table>
+					<thead>
+						<tr>
+							<th>${i18n("protocolForm_TableHeader_ParticipantName")}</th>
+							<th>${i18n("protocolForm_TableHeader_ParticipantStatus")}</th>
+						</tr>
+					</thead>
+					<tr>
+						<td>
+						Max Mustermann
+						</td>
+						<td>
+						A
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<h4>${i18n("protocolForm_SubTitle_ProtocolItems")}</h4>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>${i18n("protocolForm_TableHeader_AccordingAgendaItem")}</th>
+						<th>${i18n("protocolForm_TableHeader_Transcript")}</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>1</td>
+					<td>a shortened version of a description</td>
+				</tr>
+			</table>
+		</div>
+
+
+
+	</fieldset>
+</form>
+
+
+</@layout.myLayout>

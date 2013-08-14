@@ -1,0 +1,32 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> <@layout.myLayout
+"Home page">
+
+
+<form class="form-horizontal">
+	<fieldset>
+		<legend>${i18n("protocolItemForm_Title")}</legend>
+		<div class="col-lg-3">
+			<div class="control-group">
+				<label class="control-label" for="agendaItem">${i18n("protocolItemForm_Label_AccordingAgendaItem")}</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="agendaItem" />
+				</div>
+			</div><div><span>&nbsp;</span></div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary btn-block">${i18n("generic_Button_SaveChanges")}</button>
+				<button type="button" class="btn btn-block">${i18n("generic_Button_Cancel")}</button>
+			</div>
+		</div>
+		<div class="col-lg-9">
+			<div class="control-group">
+				<label class="control-label" for="transcript">${i18n("protocolItemForm_Label_Transcipt")}</label>
+				<div class="controls">
+					<textarea class="form-control" rows="11" id="transcript"></textarea>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</form>
+
+
+</@layout.myLayout>
