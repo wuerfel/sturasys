@@ -1,0 +1,39 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> <@layout.myLayout
+"Home page">
+
+
+<form class="form-horizontal">
+	<fieldset>
+		<legend>${i18n("participantListForm_Title")}</legend>
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="form-actions">
+					<button type="button" id="participantListForm_Button_AddParticipantListItem"
+						class="btn btn-primary btn-block">${i18n("participantListForm_Button_AddParticipantListItem")}</button>
+					<button type="submit" class="btn btn-primary btn-block">${i18n("generic_Button_SaveChanges")}</button>
+					<button type="button" class="btn btn-block">${i18n("generic_Button_Cancel")}</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>${i18n("participantListForm_TableHeader_ParticipantName")}</th>
+						<th>${i18n("participantListForm_TableHeader_ParticipantStatus")}</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>Hans Zimmer</td>
+					<td>G</td>
+				</tr>
+			</table>
+		</div>
+
+
+
+	</fieldset>
+</form>
+
+
+</@layout.myLayout>

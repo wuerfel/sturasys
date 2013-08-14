@@ -129,4 +129,16 @@ public class ApplicationController
 
 		return Results.html();
 	}
+	
+	public Result participantListForm()
+	{
+
+		return Results.html();
+	}
+	
+	public Result participantListItemForm()
+	{
+
+		return Results.html();
+	}
 }
