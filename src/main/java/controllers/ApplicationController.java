@@ -17,15 +17,22 @@
 package controllers;
 
 import utils.DAOController;
+import models.Account;
+import models.Application;
 import models.User;
+import models.forms.AccountFormData;
+import models.forms.ApplicationFormData;
+import models.forms.UserFormData;
+import ninja.Context;
 import ninja.Result;
 import ninja.Results;
 import ninja.Router;
 import ninja.i18n.Lang;
+import ninja.validation.JSR303Validation;
+import ninja.validation.Validation;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.google.inject.persist.Transactional;
 
 @Singleton
 public class ApplicationController
@@ -86,12 +93,104 @@ public class ApplicationController
 
 	}
 
-	@Transactional
-	public Result postIndex()
+	/**
+	 * Shows the User-Form <br/>
+	 * GET /user
+	 * 
+	 * @return the user-form
+	 */
+	public Result userForm()
 	{
+		return Results.html();
+	}
 
-		logger.info("In postRoute");
-		return Results.redirect("/");
+	/**
+	 * Takes the post of the User-Form <br/>
+	 * POST /user
+	 * 
+	 * @return to the user-form
+	 */
+	public Result postUserForm(Context context, @JSR303Validation UserFormData userData, Validation validation)
+	{
+		if (validation.hasViolations())
+		{
+			context.getFlashCookie().error("violations!");
+		} else
+		{
+			logger.info(userData.printOut());
+			dao.<User> persist(userData.getAsUser());
+		}
+		return Results.redirect(context.getContextPath() + "/user");
+	}
+
+	/**
+	 * Shows the Account-Form <br/>
+	 * GET /account
+	 * 
+	 * @return the account-form
+	 */
+	public Result accountForm()
+	{
+		return Results.html();
+	}
+
+	/**
+	 * Shows the Account-Form <br/>
+	 * GET /account
+	 * 
+	 * @return the account-form
+	 */
+	public Result postAccountForm(Context context, @JSR303Validation AccountFormData accountData, Validation validation)
+	{
+		if (validation.hasViolations())
+		{
+			context.getFlashCookie().error("violations!");
+		} else
+		{
+			logger.info(accountData.printOut());
+			dao.<Account> persist(accountData.getAsAccount());
+		}
+		return Results.redirect(context.getContextPath() + "/account");
+	}
+
+	/**
+	 * Shows the Application-Form <br/>
+	 * GET /account
+	 * 
+	 * @return the Application-form
+	 */
+	public Result applicationForm()
+	{
+		return Results.html();
+	}
+
+	/**
+	 * Shows the Application-Form <br/>
+	 * GET /application
+	 * 
+	 * @return the account-form
+	 */
+	public Result postApplicationForm(Context context, @JSR303Validation ApplicationFormData applicationData, Validation validation)
+	{
+		if (validation.hasViolations())
+		{
+			context.getFlashCookie().error("violations!");
+		} else
+		{
+			logger.info(applicationData.printOut());
+			dao.<Application> persist(applicationData.getAsApplication());
+		}
+		return Results.redirect(context.getContextPath() + "/application");
+	}
+	/**
+	 * Shows the Finance-Plan-Form <br/>
+	 * GET /account
+	 * 
+	 * @return the Finance-Plan-form
+	 */
+	public Result financePlanForm()
+	{
+		return Results.html();
 	}
 
 	public Result agendaForm()

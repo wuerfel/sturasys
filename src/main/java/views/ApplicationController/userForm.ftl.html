@@ -1,0 +1,90 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "UserForm">
+<div class="container">
+<form class="form-horizontal" method="post" action="/user">  
+        <fieldset>  
+          <legend>${i18n("userForm_Title")}</legend>
+          <div class="row"> 
+          		<div class="col-6">
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="firstName">${i18n("userForm_Label_Forename")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="firstName" name="firstName" required="required">   
+            </div>  
+          </div>             
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="surName">${i18n("userForm_Label_Surname")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="surName" name="surName" required="required">   
+            </div>  
+          </div>             
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="email">${i18n("userForm_Label_Email")}</label>  
+            <div class="col col-lg-8">  
+              <input type="email" class="form-control" id="email" name="email" required="required">   
+            </div>  
+          </div>             
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="matricle">${i18n("userForm_Label_Matricleno")}</label>  
+            <div class="col col-lg-8">  
+              <input type="text" class="form-control" id="matricle" name="matricleNo" required="required">   
+            </div>  
+          </div>
+          <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="telephone">${i18n("userForm_Label_Telephoneno")}</label>  
+	            <div class="col col-lg-8">  
+	              <input type="text" class="form-control" id="telphoneno" name="telephoneNo">   
+	            </div>  
+	          </div>  
+	        <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="password">${i18n("userForm_Label_Password")}</label>  
+	            <div class="col col-lg-8">  
+	              <input type="password" class="form-control" id="password" name="password" required="required">   
+	            </div>  
+	          </div>  
+	        <div class="form-group">  
+            <label class="col col-lg-4 control-label" for="password2">${i18n("userForm_Label_PasswordRepetition")}</label>  
+	            <div class="col col-lg-8">  
+	              <input type="password" class="form-control" id="password2" name="password2" required="required">   
+	            </div>  
+	          </div>  
+	          <div class="form-group">  
+	            <label class="col col-lg-4 control-label" for="postal">${i18n("userForm_Label_Postal")}</label>  
+	            <div class="col col-lg-8">  
+	              <input type="text" class="form-control" id="postal" name="postal" name="postal" required="required">   
+	            </div>  
+	          </div>
+			<div class="form-group">  
+	            <label class="col col-lg-4 control-label" for="street">${i18n("userForm_Label_Street")}</label>  
+	            <div class="col col-lg-8">  
+	              <input type="text" class="form-control" id="street" name="street" required="required">   
+	            </div>  
+	          </div>
+	         <div class="form-group">  
+	            <label class="col col-lg-4 control-label" for="streetNo">${i18n("userForm_Label_Streetno")}</label>  
+	            <div class="col col-lg-8">  
+	              <input type="text" class="form-control " id="streetNo" name="streetNo" required="required">   
+	            </div>  
+	          </div>  
+	             <div class="form-group">  
+	            <label class="col col-lg-4 control-label" for="city">${i18n("userForm_Label_City")}</label>  
+	            <div class="col col-lg-8">  
+	              <input type="text" class="form-control" id="city" name="city" required="required">   
+	            </div>  
+	          </div>  
+		</div>
+		</div>
+<div class="row">
+	<div class="col-2 col-lg-4"></div>
+    <div class="col-lg-6">  
+      <button type="submit" class="btn btn-primary">${i18n("userForm_Button_Submit")}</button>  
+      <button class="btn">${i18n("userForm_Button_Reset")}</button>  
+    </div>
+   	<div class="col-lg-2"></div>  
+</div>
+
+        </fieldset>  
+</form>
+
+</div>
+</@layout.myLayout>

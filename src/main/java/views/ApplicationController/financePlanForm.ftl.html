@@ -1,0 +1,51 @@
+<#import "../layout/defaultLayout.ftl.html" as layout> 
+<@layout.myLayout "AccountForm">
+
+<div class="container">
+<h1>${i18n("financePlanForm_Title")}</h1>
+<div class="row">
+<div class="col-6">
+<form class="form-inline" method="post" action="/financeplan/in">  
+ 	<fieldset>
+          <legend>${i18n("financePlanForm_Title_Incomes")}</legend>
+          <div class="col-4 col-lg-4">
+		  <input type="text" class="form-control" id="income_title" name="title" placeholder='${i18n("financePlanForm_Label_IncomeTitle")}'>
+		  		  </div>
+		  <div class="col-4 col-lg-4">
+		  <input type="text" class="form-control" id="income_amount" name="amount" placeholder='${i18n("financePlanForm_Label_IncomeAmount")}'>
+		  		  		  </div>
+		  <div class="col-1 col-lg-1">
+		  <button type="submit" class="btn btn-submit">-</button>
+		  		  		  </div>
+		  <div class="col-1 col-lg-1">
+      	  <button type="submit" class="btn btn-submit">-</button> 
+      	  </div> 
+  </fieldset>
+</form>
+</div></div>
+<p><span>&nbsp;</span></p>
+<div class="col-6">
+
+<div class="row">
+<form class="form-inline" method="post" action="/financeplan/out">  
+ <fieldset>
+          <legend>${i18n("financePlanForm_Title_Outgoings")}</legend>
+          <div class="col-4 col-lg-4">
+		  <input type="text" class="form-control" id="outgoing_title" name="title" placeholder='${i18n("financePlanForm_Label_OutgoingTitle")}'>
+		  </div>
+		  <div class="col-4 col-lg-4">
+		  <input type="text" class="form-control"id="outgoing_amount" name="amount" placeholder='${i18n("financePlanForm_Label_OutgoingAmount")}'>
+		  		  </div>
+		  <div class="col-1 col-lg-1">
+		  <button type="submit" class="btn btn-submit">+</button>
+		  		  		  </div>
+		  <div class="col-1 col-lg-1">
+      	  <button type="submit" class="btn btn-submit">-</button>  
+      	  </div>
+</fieldset>
+</form>
+</div></div>
+
+</div>
+
+</@layout.myLayout>
