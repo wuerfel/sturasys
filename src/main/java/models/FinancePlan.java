@@ -27,26 +27,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class FinancePlan {
+public class FinancePlan
+{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-	
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="financePlan")
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "financePlan")
 	List<FinancePlanItem> revenues;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="financePlan")
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "financePlan")
 	List<FinancePlanItem> outgoings;
-	
+
 	/**
 	 * link to the application
 	 */
-	@OneToOne(mappedBy="financiation")
+	@OneToOne(mappedBy = "financiation")
 	Application application;
 
-	public FinancePlan() {
+	public FinancePlan()
+	{
 	}
 
 }

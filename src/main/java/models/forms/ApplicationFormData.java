@@ -16,13 +16,37 @@
 
 package models.forms;
 
-import models.Application;
+import org.hibernate.validator.constraints.NotEmpty;
 
-public class ApplicationFormData
+import models.Application;
+import models.DbData;
+
+public class ApplicationFormData implements FormData
 {
+	public ApplicationFormData(String title, Long timeStamp, Integer status, String description, Integer noOfStudents,
+			Integer noOfParticipants, String fee, String reqFundingSum, String targetAudience, String accommodation,
+			String placeOfEvent, Long startTime, Long duration)
+	{
+		super();
+		this.title = title;
+		this.timeStamp = timeStamp;
+		this.status = status;
+		this.description = description;
+		this.noOfStudents = noOfStudents;
+		this.noOfParticipants = noOfParticipants;
+		this.fee = fee;
+		this.reqFundingSum = reqFundingSum;
+		this.targetAudience = targetAudience;
+		this.accommodation = accommodation;
+		this.placeOfEvent = placeOfEvent;
+		this.startTime = startTime;
+		this.duration = duration;
+	}
+
 	/**
 	 * the title of this application
 	 */
+	@NotEmpty
 	private String title;
 	/**
 	 * the time when the application came in
@@ -35,6 +59,7 @@ public class ApplicationFormData
 	/**
 	 * the description
 	 */
+	@NotEmpty
 	private String description;
 	/**
 	 * the expected number of students attending this event
@@ -47,22 +72,27 @@ public class ApplicationFormData
 	/**
 	 * the entrance fee of the event related to this application
 	 */
+	@NotEmpty
 	private String fee;
 	/**
 	 * the requested funding sum
 	 */
+	@NotEmpty
 	private String reqFundingSum;
 	/**
 	 * the target audience of the event related to this application
 	 */
+	@NotEmpty
 	private String targetAudience;
 	/**
 	 * the amount of money provided by the council
 	 */
+	
 	private String accommodation;
 	/**
 	 * the place where the event's taking place
 	 */
+	@NotEmpty
 	private String placeOfEvent;
 	/**
 	 * the starttime of the event
@@ -226,5 +256,13 @@ public class ApplicationFormData
 		application.setTargetAudience(targetAudience);
 		application.setTitle(title);
 		return application;
+	}
+
+	@Override
+	public DbData getAsDbData()
+	{
+
+		return new Application(title, timeStamp, status, description, noOfStudents, noOfParticipants, fee,
+				reqFundingSum, targetAudience, accommodation, placeOfEvent, startTime, duration);
 	}
 }

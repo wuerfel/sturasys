@@ -27,8 +27,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import models.forms.FormData;
+
 @Entity
-public class AgendaItem {
+public class AgendaItem implements DbData
+{
+
+	public AgendaItem(Integer itemNumber, String title, String description, Boolean publiclyAccessable)
+	{
+		super();
+		this.itemNumber = itemNumber;
+		this.title = title;
+		this.description = description;
+		this.publiclyAccessible = publiclyAccessable;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -57,9 +69,9 @@ public class AgendaItem {
 	@ManyToOne
 	private Application application;
 	/**
-	 * indicates weather the item is public or not
+	 * indicates whether the item is public or not
 	 */
-	private Boolean publiclyAccessable;
+	private Boolean publiclyAccessible;
 	/**
 	 * the transcript for the agenda item
 	 */
@@ -71,71 +83,95 @@ public class AgendaItem {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "agendaItem")
 	private List<Ballot> ballots;
 
-	public AgendaItem() {
+	public AgendaItem()
+	{
 	}
 
-	public String getTitle() {
+	public String getTitle()
+	{
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(String title)
+	{
 		this.title = title;
 	}
 
-	public Integer getItemNumber() {
+	public Integer getItemNumber()
+	{
 		return itemNumber;
 	}
 
-	public void setItemNumber(Integer itemNumber) {
+	public void setItemNumber(Integer itemNumber)
+	{
 		this.itemNumber = itemNumber;
 	}
 
-	public String getDescription() {
+	public String getDescription()
+	{
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(String description)
+	{
 		this.description = description;
 	}
 
-	public Application getApplication() {
+	public Application getApplication()
+	{
 		return application;
 	}
 
-	public void setApplication(Application application) {
+	public void setApplication(Application application)
+	{
 		this.application = application;
 	}
 
-	public Boolean getPubliclyAccessable() {
-		return publiclyAccessable;
+	public Boolean getPubliclyAccessable()
+	{
+		return publiclyAccessible;
 	}
 
-	public void setPubliclyAccessable(Boolean publiclyAccessable) {
-		this.publiclyAccessable = publiclyAccessable;
+	public void setPubliclyAccessable(Boolean publiclyAccessable)
+	{
+		this.publiclyAccessible = publiclyAccessable;
 	}
 
-	public Agenda getAgenda() {
+	public Agenda getAgenda()
+	{
 		return agenda;
 	}
 
-	public void setAgenda(Agenda agenda) {
+	public void setAgenda(Agenda agenda)
+	{
 		this.agenda = agenda;
 	}
 
-	public ProtocolItem getProtocolItem() {
+	public ProtocolItem getProtocolItem()
+	{
 		return protocolItem;
 	}
 
-	public void setProtocolItem(ProtocolItem protocolItem) {
+	public void setProtocolItem(ProtocolItem protocolItem)
+	{
 		this.protocolItem = protocolItem;
 	}
 
-	public List<Ballot> getBallots() {
+	public List<Ballot> getBallots()
+	{
 		return ballots;
 	}
 
-	public void setBallots(List<Ballot> ballots) {
+	public void setBallots(List<Ballot> ballots)
+	{
 		this.ballots = ballots;
+	}
+
+	@Override
+	public FormData getAsFormData()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

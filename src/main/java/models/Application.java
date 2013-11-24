@@ -28,8 +28,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import models.forms.ApplicationFormData;
+import models.forms.FormData;
+
 @Entity
-public class Application {
+public class Application implements DbData
+{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -103,146 +107,209 @@ public class Application {
 	/**
 	 * the agenda items in which the application is discussed
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="application")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "application")
 	private List<AgendaItem> agendaItems;
 
-	public Application() {
+	public Application()
+	{
 	}
 
-	public String getTitle() {
+	public String getTitle()
+	{
 		return title;
 	}
 
-	public void setTitle(String title) {
+	public void setTitle(String title)
+	{
 		this.title = title;
 	}
 
-	public Long getTimeStamp() {
+	public Long getTimeStamp()
+	{
 		return timeStamp;
 	}
 
-	public void setTimeStamp(Long timeStamp) {
+	public void setTimeStamp(Long timeStamp)
+	{
 		this.timeStamp = timeStamp;
 	}
 
-	public Integer getStatus() {
+	public Integer getStatus()
+	{
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(Integer status)
+	{
 		this.status = status;
 	}
 
-	public String getDescription() {
+	public String getDescription()
+	{
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(String description)
+	{
 		this.description = description;
 	}
 
-	public Integer getNoOfStudents() {
+	public Integer getNoOfStudents()
+	{
 		return noOfStudents;
 	}
 
-	public void setNoOfStudents(Integer noOfStudents) {
+	public void setNoOfStudents(Integer noOfStudents)
+	{
 		this.noOfStudents = noOfStudents;
 	}
 
-	public Integer getNoOfParticipants() {
+	public Integer getNoOfParticipants()
+	{
 		return noOfParticipants;
 	}
 
-	public void setNoOfParticipants(Integer noOfParticipants) {
+	public void setNoOfParticipants(Integer noOfParticipants)
+	{
 		this.noOfParticipants = noOfParticipants;
 	}
 
-	public String getFee() {
+	public String getFee()
+	{
 		return fee;
 	}
 
-	public void setFee(String fee) {
+	public void setFee(String fee)
+	{
 		this.fee = fee;
 	}
 
-	public String getReqFundingSum() {
+	public String getReqFundingSum()
+	{
 		return reqFundingSum;
 	}
 
-	public void setReqFundingSum(String reqFundingSum) {
+	public void setReqFundingSum(String reqFundingSum)
+	{
 		this.reqFundingSum = reqFundingSum;
 	}
 
-	public String getTargetAudience() {
+	public String getTargetAudience()
+	{
 		return targetAudience;
 	}
 
-	public void setTargetAudience(String targetAudience) {
+	public void setTargetAudience(String targetAudience)
+	{
 		this.targetAudience = targetAudience;
 	}
 
-	public User getApplicant() {
+	public User getApplicant()
+	{
 		return applicant;
 	}
 
-	public void setApplicant(User applicant) {
+	public void setApplicant(User applicant)
+	{
 		this.applicant = applicant;
 	}
 
-	public String getAccommodation() {
+	public String getAccommodation()
+	{
 		return accommodation;
 	}
 
-	public void setAccommodation(String accommodation) {
+	public void setAccommodation(String accommodation)
+	{
 		this.accommodation = accommodation;
 	}
 
-	public String getPlaceOfEvent() {
+	public String getPlaceOfEvent()
+	{
 		return placeOfEvent;
 	}
 
-	public void setPlaceOfEvent(String placeOfEvent) {
+	public void setPlaceOfEvent(String placeOfEvent)
+	{
 		this.placeOfEvent = placeOfEvent;
 	}
 
-	public Long getStartTime() {
+	public Long getStartTime()
+	{
 		return startTime;
 	}
 
-	public void setStartTime(Long startTime) {
+	public void setStartTime(Long startTime)
+	{
 		this.startTime = startTime;
 	}
 
-	public Long getDuration() {
+	public Long getDuration()
+	{
 		return duration;
 	}
 
-	public void setDuration(Long duration) {
+	public void setDuration(Long duration)
+	{
 		this.duration = duration;
 	}
 
-	public FinancePlan getFinanciation() {
+	public FinancePlan getFinanciation()
+	{
 		return financiation;
 	}
 
-	public void setFinanciation(FinancePlan financiation) {
+	public void setFinanciation(FinancePlan financiation)
+	{
 		this.financiation = financiation;
 	}
 
-	public Decision getDecision() {
+	public Decision getDecision()
+	{
 		return decision;
 	}
 
-	public void setDecision(Decision decision) {
+	public void setDecision(Decision decision)
+	{
 		this.decision = decision;
 	}
 
-	public List<AgendaItem> getAgendaItems() {
+	public List<AgendaItem> getAgendaItems()
+	{
 		return agendaItems;
 	}
 
-	public void setAgendaItems(List<AgendaItem> agendaItems) {
+	public void setAgendaItems(List<AgendaItem> agendaItems)
+	{
 		this.agendaItems = agendaItems;
+	}
+
+	@Override
+	public FormData getAsFormData()
+	{
+
+		return new ApplicationFormData(title, timeStamp, status, description, noOfStudents, noOfParticipants, fee,
+				reqFundingSum, targetAudience, accommodation, placeOfEvent, startTime, duration);
+	}
+
+	public Application(String title, Long timeStamp, Integer status, String description, Integer noOfStudents,
+			Integer noOfParticipants, String fee, String reqFundingSum, String targetAudience, String accommodation,
+			String placeOfEvent, Long startTime, Long duration)
+	{
+		super();
+		this.title = title;
+		this.timeStamp = timeStamp;
+		this.status = status;
+		this.description = description;
+		this.noOfStudents = noOfStudents;
+		this.noOfParticipants = noOfParticipants;
+		this.fee = fee;
+		this.reqFundingSum = reqFundingSum;
+		this.targetAudience = targetAudience;
+		this.accommodation = accommodation;
+		this.placeOfEvent = placeOfEvent;
+		this.startTime = startTime;
+		this.duration = duration;
 	}
 
 }

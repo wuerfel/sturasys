@@ -14,22 +14,15 @@
  * limitations under the License.
  */
 
-package models;
+package models.forms;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import models.DbData;
+import models.Decision;
 
-import models.forms.DecisionFormData;
-import models.forms.FormData;
-
-@Entity
-public class Decision implements DbData
+public class DecisionFormData implements FormData
 {
 
-	public Decision(String decisionNumber, Character status, String comment)
+	public DecisionFormData(String decisionNumber, Character status, String comment)
 	{
 		super();
 		this.decisionNumber = decisionNumber;
@@ -37,9 +30,6 @@ public class Decision implements DbData
 		this.comment = comment;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
 	/**
 	 * functional identifier
 	 */
@@ -48,17 +38,13 @@ public class Decision implements DbData
 	 * can be be <i>A</i> for approved or <i>R</i> for rejected
 	 */
 	private Character status;
-	/**
-	 * the application to which the decision belongs (may be empty)
-	 */
-	@OneToOne(mappedBy = "decision")
-	private Application application;
+
 	/**
 	 * holds comments and restrictions
 	 */
 	private String comment;
 
-	public Decision()
+	public DecisionFormData()
 	{
 	}
 
@@ -82,16 +68,6 @@ public class Decision implements DbData
 		this.status = status;
 	}
 
-	public Application getApplication()
-	{
-		return application;
-	}
-
-	public void setApplication(Application application)
-	{
-		this.application = application;
-	}
-
 	public String getComment()
 	{
 		return comment;
@@ -103,9 +79,15 @@ public class Decision implements DbData
 	}
 
 	@Override
-	public FormData getAsFormData()
+	public DbData getAsDbData()
 	{
-		return new DecisionFormData(decisionNumber, status, comment);
+		return new Decision(decisionNumber, status, comment);
+	}
+
+	@Override
+	public String printOut()
+	{
+		return decisionNumber + " " + status + " " + comment;
 	}
 
 }

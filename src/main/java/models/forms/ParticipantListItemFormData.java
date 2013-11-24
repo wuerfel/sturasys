@@ -14,21 +14,15 @@
  * limitations under the License.
  */
 
-package models;
+package models.forms;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import models.DbData;
+import models.ParticipantListItem;
 
-import models.forms.FormData;
-
-@Entity
-public class ParticipantListItem implements DbData
+public class ParticipantListItemFormData implements FormData
 {
 
-	public ParticipantListItem(Character perticipationRole, Long arrivalTime, Long leavingTime, String comment)
+	public ParticipantListItemFormData(Character perticipationRole, Long arrivalTime, Long leavingTime, String comment)
 	{
 		super();
 		this.perticipationRole = perticipationRole;
@@ -37,20 +31,6 @@ public class ParticipantListItem implements DbData
 		this.comment = comment;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-
-	/**
-	 * the list to which the item belongs
-	 */
-	@ManyToOne
-	private ParticipantList participantList;
-	/**
-	 * holds the participant
-	 */
-	@ManyToOne
-	private User participant;
 	/**
 	 * specifies if a participant was present and in which role. can be A,E,U,G
 	 * A means attendant or present E means excused absent U means unexcused
@@ -70,26 +50,6 @@ public class ParticipantListItem implements DbData
 	 */
 	private String comment;
 
-	public ParticipantList getParticipantList()
-	{
-		return participantList;
-	}
-
-	public void setParticipantList(ParticipantList participantList)
-	{
-		this.participantList = participantList;
-	}
-
-	public User getParticipant()
-	{
-		return participant;
-	}
-
-	public void setParticipant(User participant)
-	{
-		this.participant = participant;
-	}
-
 	public Character getPerticipationRole()
 	{
 		return perticipationRole;
@@ -100,7 +60,7 @@ public class ParticipantListItem implements DbData
 		this.perticipationRole = perticipationRole;
 	}
 
-	public ParticipantListItem()
+	public ParticipantListItemFormData()
 	{
 	}
 
@@ -135,10 +95,15 @@ public class ParticipantListItem implements DbData
 	}
 
 	@Override
-	public FormData getAsFormData()
+	public DbData getAsDbData()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return new ParticipantListItem(perticipationRole, arrivalTime, leavingTime, comment);
+	}
+
+	@Override
+	public String printOut()
+	{
+		return perticipationRole + " " + arrivalTime + " " + leavingTime + " " + comment;
 	}
 
 }

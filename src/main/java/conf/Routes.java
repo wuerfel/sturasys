@@ -51,21 +51,31 @@ public class Routes implements ApplicationRoutes
 
 		// default routes
 		router.GET().route("/").with(ApplicationController.class, "getIndex");
-		router.GET().route("/agenda").with(ApplicationController.class, "agendaForm");
-		router.GET().route("/agendaItem").with(ApplicationController.class, "agendaItemForm");
-		router.GET().route("/decision").with(ApplicationController.class, "decisionForm");
-		router.GET().route("/protocol").with(ApplicationController.class, "protocolForm");
-		router.GET().route("/protocolItem").with(ApplicationController.class, "protocolItemForm");
-		router.GET().route("/ballot").with(ApplicationController.class, "ballotForm");
-		router.GET().route("/participantList").with(ApplicationController.class, "participantListForm");
-		router.GET().route("/participantListItem").with(ApplicationController.class, "participantListItemForm");
-        router.GET().route("/user").with(ApplicationController.class, "userForm");
-        router.POST().route("/user").with(ApplicationController.class, "postUserForm");
         router.GET().route("/account").with(ApplicationController.class, "accountForm");
         router.POST().route("/account").with(ApplicationController.class, "postAccountForm");
+		router.GET().route("/agenda").with(ApplicationController.class, "agendaForm");
+        router.POST().route("/agenda").with(ApplicationController.class, "postAgendaForm");
+		router.GET().route("/agendaItem").with(ApplicationController.class, "agendaItemForm");
+        router.POST().route("/agendaItem").with(ApplicationController.class, "postAgendaItemForm");
         router.GET().route("/application").with(ApplicationController.class, "applicationForm");
         router.POST().route("/application").with(ApplicationController.class, "postApplicationForm");
+		router.GET().route("/ballot").with(ApplicationController.class, "ballotForm");
+        router.POST().route("/ballot").with(ApplicationController.class, "postBallotForm");
+		router.GET().route("/decision").with(ApplicationController.class, "decisionForm");
+        router.POST().route("/decision").with(ApplicationController.class, "postDecisionForm");
         router.GET().route("/financeplan").with(ApplicationController.class, "financePlanForm");
+        router.POST().route("/financeplan").with(ApplicationController.class, "postFinancePlanForm");
+		router.GET().route("/participantList").with(ApplicationController.class, "participantListForm");
+        router.POST().route("/participantList").with(ApplicationController.class, "postParticipantListForm");
+		router.GET().route("/participantListItem").with(ApplicationController.class, "participantListItemForm");
+        router.POST().route("/participantListItem").with(ApplicationController.class, "postParticipantListItemForm");
+		router.GET().route("/protocol").with(ApplicationController.class, "protocolForm");
+        router.POST().route("/protocol").with(ApplicationController.class, "postProtocolForm");
+		router.GET().route("/protocolItem").with(ApplicationController.class, "protocolItemForm");
+        router.POST().route("/protocolItem").with(ApplicationController.class, "postProtocolItemForm");
+        router.GET().route("/user").with(ApplicationController.class, "userForm");
+        router.POST().route("/user").with(ApplicationController.class, "postUserForm");
+
 		router.GET().route("/assets/.*").with(AssetsController.class, "serve");
 	}
 }

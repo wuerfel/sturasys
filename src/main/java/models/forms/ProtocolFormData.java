@@ -14,35 +14,21 @@
  * limitations under the License.
  */
 
-package models;
+package models.forms;
 
-import java.util.List;
+import models.DbData;
+import models.Protocol;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import models.forms.FormData;
-import models.forms.ProtocolFormData;
-
-@Entity
-public class Protocol implements DbData
+public class ProtocolFormData implements FormData
 {
 
-	public Protocol(Long startingTimestamp, Long endingTimestamp)
+	public ProtocolFormData(Long startingTimestamp, Long endingTimestamp)
 	{
 		super();
 		this.startingTimestamp = startingTimestamp;
 		this.endingTimestamp = endingTimestamp;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
 	/**
 	 * the date and time the meeting has started
 	 */
@@ -51,18 +37,8 @@ public class Protocol implements DbData
 	 * the date and time the meeting has ended
 	 */
 	private Long endingTimestamp;
-	/**
-	 * holds the respective items of the protocol
-	 */
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "protocol")
-	private List<ProtocolItem> items;
-	/**
-	 * holds the list of participants
-	 */
-	@OneToOne
-	private ParticipantList participants;
 
-	public Protocol()
+	public ProtocolFormData()
 	{
 	}
 
@@ -86,21 +62,18 @@ public class Protocol implements DbData
 		this.endingTimestamp = endingTimestamp;
 	}
 
-	public ParticipantList getParticipants()
+	@Override
+	public DbData getAsDbData()
 	{
-		return participants;
-	}
-
-	public void setParticipants(ParticipantList participants)
-	{
-		this.participants = participants;
+		// TODO Auto-generated method stub
+		return new Protocol(startingTimestamp, endingTimestamp);
 	}
 
 	@Override
-	public FormData getAsFormData()
+	public String printOut()
 	{
 
-		return new ProtocolFormData(startingTimestamp, endingTimestamp);
+		return startingTimestamp + " " + endingTimestamp;
 	}
 
 }

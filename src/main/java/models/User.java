@@ -25,10 +25,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import models.forms.FormData;
+import models.forms.UserFormData;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
-public class User
+public class User implements DbData
 {
 
 	@Id
@@ -242,6 +245,14 @@ public class User
 	public boolean checkPw(String passWord)
 	{
 		return BCrypt.checkpw(passWord, this.getPassword());
+	}
+
+	@Override
+	public FormData getAsFormData()
+	{
+
+		return new UserFormData(accounts, applications, city, email, firstName, matricleNo, participationList,
+				password, password, postal, role, street, streetNo, surName, telephoneNo);
 	}
 
 }

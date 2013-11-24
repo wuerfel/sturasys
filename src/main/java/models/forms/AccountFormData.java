@@ -16,33 +16,48 @@
 
 package models.forms;
 
-import models.Account;
+import org.hibernate.validator.constraints.NotEmpty;
 
-public class AccountFormData
+import models.Account;
+import models.DbData;
+
+public class AccountFormData implements FormData
 {
 
 	/**
 	 * the number of this bank account
 	 */
+
 	private long accountNumber;
 
 	/**
 	 * the bank identifier code
 	 */
+	@NotEmpty
 	private String bankCode;
 
 	/**
 	 * the name of the bank institute
 	 */
+	@NotEmpty
 	private String bank;
 
 	/**
 	 * the iban number
 	 */
+	@NotEmpty
 	private String iban;
 
 	public AccountFormData()
 	{
+	}
+
+	public AccountFormData(long accNum, String bank, String bankCode, String iban)
+	{
+		this.accountNumber = accNum;
+		this.bank = bank;
+		this.bankCode = bankCode;
+		this.iban = iban;
 	}
 
 	public long getAccountNumber()
@@ -99,6 +114,13 @@ public class AccountFormData
 		account.setIban(iban);
 
 		return account;
+	}
+
+	@Override
+	public DbData getAsDbData()
+	{
+		Account acc = new Account(accountNumber, bank, bankCode, iban);
+		return acc;
 	}
 
 }

@@ -18,10 +18,24 @@ package controllers;
 
 import utils.DAOController;
 import models.Account;
+import models.Agenda;
+import models.AgendaItem;
 import models.Application;
+import models.Ballot;
+import models.Decision;
+import models.ParticipantListItem;
+import models.Protocol;
+import models.ProtocolItem;
 import models.User;
 import models.forms.AccountFormData;
+import models.forms.AgendaFormData;
+import models.forms.AgendaItemFormData;
 import models.forms.ApplicationFormData;
+import models.forms.BallotFormData;
+import models.forms.DecisionFormData;
+import models.forms.ParticipantListItemFormData;
+import models.forms.ProtocolFormData;
+import models.forms.ProtocolItemFormData;
 import models.forms.UserFormData;
 import ninja.Context;
 import ninja.Result;
@@ -59,36 +73,36 @@ public class ApplicationController
 	public Result getIndex()
 	{
 
-		User u = new User();
-		u.setCity("");
-		u.setEmail("email");
-		u.setFirstName("firstName");
-		u.setMatricleNo("matricleNo");
-		u.setPassword("password");
-		u.setPostal("e");
-		u.setRole(1);
-		u.setStreet("street");
-		u.setStreetNo("streetNo");
-		u.setSurName("surName");
-		u.setTelephoneNo("12");
+		// User u = new User();
+		// u.setCity("");
+		// u.setEmail("email");
+		// u.setFirstName("firstName");
+		// u.setMatricleNo("matricleNo");
+		// u.setPassword("password");
+		// u.setPostal("e");
+		// u.setRole(1);
+		// u.setStreet("street");
+		// u.setStreetNo("streetNo");
+		// u.setSurName("surName");
+		// u.setTelephoneNo("12");
+		//
+		// User u2 = new User();
+		// u2.setCity("ww");
+		// u2.setEmail("emaiwwl");
+		// u2.setFirstName("firstwwName");
+		// u2.setMatricleNo("matrwwicleNo");
+		// u2.setPassword("passwwword");
+		// u2.setPostal("ew");
+		// u2.setRole(1);
+		// u2.setStreet("strweet");
+		// u2.setStreetNo("stwreetNo");
+		// u2.setSurName("surNwame");
+		// u2.setTelephoneNo("1w2");
+		// dao.<User> persist(u);
+		// dao.<User> persist(u2);
+		// dao.<User> remove(u);
+		// User returned = dao.getSingleElement(User.class, u2.getId());
 
-		User u2 = new User();
-		u2.setCity("ww");
-		u2.setEmail("emaiwwl");
-		u2.setFirstName("firstwwName");
-		u2.setMatricleNo("matrwwicleNo");
-		u2.setPassword("passwwword");
-		u2.setPostal("ew");
-		u2.setRole(1);
-		u2.setStreet("strweet");
-		u2.setStreetNo("stwreetNo");
-		u2.setSurName("surNwame");
-		u2.setTelephoneNo("1w2");
-		dao.<User> persist(u);
-		dao.<User> persist(u2);
-		dao.<User> remove(u);
-		User returned = dao.getSingleElement(User.class, u2.getId());
-		System.out.println(returned);
 		return Results.html();
 
 	}
@@ -118,7 +132,7 @@ public class ApplicationController
 		} else
 		{
 			logger.info(userData.printOut());
-			dao.<User> persist(userData.getAsUser());
+			dao.<User> persist((User) userData.getAsDbData());
 		}
 		return Results.redirect(context.getContextPath() + "/user");
 	}
@@ -136,7 +150,7 @@ public class ApplicationController
 
 	/**
 	 * Shows the Account-Form <br/>
-	 * GET /account
+	 * POST /account
 	 * 
 	 * @return the account-form
 	 */
@@ -148,14 +162,14 @@ public class ApplicationController
 		} else
 		{
 			logger.info(accountData.printOut());
-			dao.<Account> persist(accountData.getAsAccount());
+			dao.<Account> persist((Account) accountData.getAsDbData());
 		}
 		return Results.redirect(context.getContextPath() + "/account");
 	}
 
 	/**
 	 * Shows the Application-Form <br/>
-	 * GET /account
+	 * GET /application
 	 * 
 	 * @return the Application-form
 	 */
@@ -166,11 +180,12 @@ public class ApplicationController
 
 	/**
 	 * Shows the Application-Form <br/>
-	 * GET /application
+	 * POST /application
 	 * 
-	 * @return the account-form
+	 * @return the application-form
 	 */
-	public Result postApplicationForm(Context context, @JSR303Validation ApplicationFormData applicationData, Validation validation)
+	public Result postApplicationForm(Context context, @JSR303Validation ApplicationFormData applicationData,
+			Validation validation)
 	{
 		if (validation.hasViolations())
 		{
@@ -178,13 +193,14 @@ public class ApplicationController
 		} else
 		{
 			logger.info(applicationData.printOut());
-			dao.<Application> persist(applicationData.getAsApplication());
+			dao.<Application> persist((Application) applicationData.getAsDbData());
 		}
 		return Results.redirect(context.getContextPath() + "/application");
 	}
+
 	/**
 	 * Shows the Finance-Plan-Form <br/>
-	 * GET /account
+	 * GET /financeplan
 	 * 
 	 * @return the Finance-Plan-form
 	 */
@@ -193,51 +209,269 @@ public class ApplicationController
 		return Results.html();
 	}
 
+	/**
+	 * Shows the Finance-Plan-Form <br/>
+	 * POST /financeplan
+	 * 
+	 * @return the financeplan-form
+	 */
+	public Result postFinancePlanForm(Context context)
+	{
+
+		return Results.redirect(context.getContextPath() + "/financeplan");
+	}
+
+	/**
+	 * Shows the Agenda-Form <br/>
+	 * GET /agenda
+	 * 
+	 * @return the Agenda-form
+	 */
 	public Result agendaForm()
 	{
 
 		return Results.html();
 	}
 
+	/**
+	 * Shows the Agenda-Form <br/>
+	 * POST /agenda
+	 * 
+	 * @return the Agenda-form
+	 */
+	public Result postAgendaForm(Context context, @JSR303Validation AgendaFormData agendaData, Validation validation)
+	{
+		if (validation.hasViolations())
+		{
+			context.getFlashCookie().error("violations!");
+		} else
+		{
+			logger.info(agendaData.printOut());
+			dao.<Agenda> persist((Agenda) agendaData.getAsDbData());
+		}
+		return Results.redirect(context.getContextPath() + "/agenda");
+	}
+
+	/**
+	 * Shows the AgendaItem-Form <br/>
+	 * GET /agendaItem
+	 * 
+	 * @return the AgendaItem-form
+	 */
 	public Result agendaItemForm()
 	{
 
 		return Results.html();
 	}
 
+	/**
+	 * Shows the AgendaItem-Form <br/>
+	 * POST /agendaItem
+	 * 
+	 * @return the AgendaItem-form
+	 */
+	public Result postAgendaItemForm(Context context, @JSR303Validation AgendaItemFormData agendaItemData,
+			Validation validation)
+	{
+		if (validation.hasViolations())
+		{
+			context.getFlashCookie().error("violations!");
+		} else
+		{
+			logger.info(agendaItemData.printOut());
+			dao.<AgendaItem> persist((AgendaItem) agendaItemData.getAsDbData());
+		}
+		return Results.redirect(context.getContextPath() + "/agendaItem");
+	}
+
+	/**
+	 * Shows the Decision-Form <br/>
+	 * GET /decision
+	 * 
+	 * @return the Decision-form
+	 */
 	public Result decisionForm()
 	{
 
 		return Results.html();
 	}
 
+	/**
+	 * Shows the Decision-Form <br/>
+	 * POST /decision
+	 * 
+	 * @return the Decision-form
+	 */
+	public Result postDecisionForm(Context context, @JSR303Validation DecisionFormData decisionData,
+			Validation validation)
+	{
+		if (validation.hasViolations())
+		{
+			context.getFlashCookie().error("violations!");
+		} else
+		{
+			logger.info(decisionData.printOut());
+			dao.<Decision> persist((Decision) decisionData.getAsDbData());
+		}
+		return Results.redirect(context.getContextPath() + "/decision");
+	}
+
+	/**
+	 * Shows the Protocol-Form <br/>
+	 * GET /protocol
+	 * 
+	 * @return the Protocol-form
+	 */
 	public Result protocolForm()
 	{
 
 		return Results.html();
 	}
 
+	/**
+	 * Shows the Protocol-Form <br/>
+	 * POST /protocol
+	 * 
+	 * @return the Protocol-form
+	 */
+	public Result postProtocolForm(Context context, @JSR303Validation ProtocolFormData protocolFormData,
+			Validation validation)
+	{
+		if (validation.hasViolations())
+		{
+			context.getFlashCookie().error("violations!");
+		} else
+		{
+			logger.info(protocolFormData.printOut());
+			dao.<Protocol> persist((Protocol) protocolFormData.getAsDbData());
+		}
+		return Results.redirect(context.getContextPath() + "/protocol");
+	}
+
+	/**
+	 * Shows the Ballot-Form <br/>
+	 * GET /ballot
+	 * 
+	 * @return the Ballot-form
+	 */
 	public Result ballotForm()
 	{
 
 		return Results.html();
 	}
-	
+
+	/**
+	 * Shows the Ballot-Form <br/>
+	 * POST /ballotDecision
+	 * 
+	 * @return the Ballot-form
+	 */
+	public Result postBallotForm(Context context, @JSR303Validation BallotFormData ballotData, Validation validation)
+	{
+		if (validation.hasViolations())
+		{
+			context.getFlashCookie().error("violations!");
+		} else
+		{
+			logger.info(ballotData.printOut());
+			dao.<Ballot> persist((Ballot) ballotData.getAsDbData());
+		}
+		return Results.redirect(context.getContextPath() + "/ballotDecision");
+	}
+
+	/**
+	 * Shows the ProtocolItem-Form <br/>
+	 * GET /protocolItem
+	 * 
+	 * @return the ProtocolItem-form
+	 */
 	public Result protocolItemForm()
 	{
 
 		return Results.html();
 	}
-	
-	public Result participantListForm()
+
+	/**
+	 * Shows the ProtocolItem-Form <br/>
+	 * POST /protocolItem
+	 * 
+	 * @return the ProtocolItem-form
+	 */
+	public Result postProtocolItemForm(Context context, @JSR303Validation ProtocolItemFormData protocolItemData,
+			Validation validation)
+	{
+		if (validation.hasViolations())
+		{
+			context.getFlashCookie().error("violations!");
+		} else
+		{
+			logger.info(protocolItemData.printOut());
+			dao.<ProtocolItem> persist((ProtocolItem) protocolItemData.getAsDbData());
+		}
+		return Results.redirect(context.getContextPath() + "/protocolItem");
+	}
+
+	/**
+	 * Shows the ParticipantList-Form <br/>
+	 * GET /participantList
+	 * 
+	 * @return the ParticipantList-form
+	 */
+	public Result participantListForm(Context context)
 	{
 
 		return Results.html();
 	}
-	
+
+	/**
+	 * Shows the ParticipantList-Form <br/>
+	 * POST /participantList
+	 * 
+	 * @return the ParticipantList-form
+	 */
+	public Result postParticipantListForm(Context context)
+	{
+		// if (validation.hasViolations())
+		// {
+		// context.getFlashCookie().error("violations!");
+		// } else
+		// {
+		// logger.info(protocolItemData.printOut());
+		// dao.<ProtocolItem> persist((ProtocolItem)
+		// protocolItemData.getAsDbData());
+		// }
+		return Results.redirect(context.getContextPath() + "/participantList");
+	}
+
+	/**
+	 * Shows the ParticipantListItem-Form <br/>
+	 * GET /participantListItem
+	 * 
+	 * @return the ParticipantListItem-form
+	 */
 	public Result participantListItemForm()
 	{
 
 		return Results.html();
+	}
+
+	/**
+	 * Shows the ParticipantListItem-Form <br/>
+	 * POST /participantListItem
+	 * 
+	 * @return the ParticipantListItem-form
+	 */
+	public Result postParticipantListItemForm(Context context,
+			@JSR303Validation ParticipantListItemFormData participantListItemData, Validation validation)
+	{
+		if (validation.hasViolations())
+		{
+			context.getFlashCookie().error("violations!");
+		} else
+		{
+			logger.info(participantListItemData.printOut());
+			dao.<ParticipantListItem> persist((ParticipantListItem) participantListItemData.getAsDbData());
+		}
+		return Results.redirect(context.getContextPath() + "/participantListItem");
 	}
 }

@@ -14,31 +14,20 @@
  * limitations under the License.
  */
 
-package models;
+package models.forms;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import models.DbData;
+import models.FinancePlanItem;
 
-import models.forms.FinancePlanItemFormData;
-import models.forms.FormData;
-
-@Entity
-public class FinancePlanItem implements DbData
+public class FinancePlanItemFormData implements FormData
 {
 
-	public FinancePlanItem(String title, Integer amount)
+	public FinancePlanItemFormData(String title, Integer amount)
 	{
 		super();
 		this.title = title;
 		this.amount = amount;
 	}
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
 
 	/**
 	 * the name of this point
@@ -49,10 +38,7 @@ public class FinancePlanItem implements DbData
 	 */
 	private Integer amount;
 
-	@ManyToOne
-	private FinancePlan financePlan;
-
-	public FinancePlanItem()
+	public FinancePlanItemFormData()
 	{
 	}
 
@@ -77,10 +63,17 @@ public class FinancePlanItem implements DbData
 	}
 
 	@Override
-	public FormData getAsFormData()
+	public DbData getAsDbData()
 	{
-		// TODO Auto-generated method stub
-		return new FinancePlanItemFormData(title, amount);
+
+		return new FinancePlanItem(title, amount);
+	}
+
+	@Override
+	public String printOut()
+	{
+
+		return title+" "+amount;
 	}
 
 }

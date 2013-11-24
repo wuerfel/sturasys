@@ -14,22 +14,17 @@
  * limitations under the License.
  */
 
-package models;
+package models.forms;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import models.forms.BallotFormData;
-import models.forms.FormData;
+import models.Ballot;
+import models.DbData;
 
-@Entity
-public class Ballot implements DbData
+public class BallotFormData implements FormData
 {
 
-	public Ballot( String title, String description, Integer voteCountYes, Integer voteCountNo,
+	public BallotFormData(String title, String description, Integer voteCountYes, Integer voteCountNo,
 			Integer voteCountAbstention)
 	{
 		super();
@@ -40,34 +35,31 @@ public class Ballot implements DbData
 		this.voteCountAbstention = voteCountAbstention;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-
 	/**
 	 * the title of the vote
 	 */
+	@NotEmpty
 	private String title;
 	/**
 	 * the description of the request
 	 */
+	@NotEmpty
 	private String description;
-	/**
-	 * the agenda item which the vote has been held
-	 */
-	@ManyToOne
-	private AgendaItem agendaItem;
+
 	/**
 	 * the number of votes for yes
 	 */
+	@NotEmpty
 	private Integer voteCountYes;
 	/**
 	 * the number of votes for no
 	 */
+	@NotEmpty
 	private Integer voteCountNo;
 	/**
 	 * the number of abstained votes
 	 */
+	@NotEmpty
 	private Integer voteCountAbstention;
 
 	/**
@@ -75,7 +67,7 @@ public class Ballot implements DbData
 	 */
 	// private Request request;
 
-	public Ballot()
+	public BallotFormData()
 	{
 	}
 
@@ -97,16 +89,6 @@ public class Ballot implements DbData
 	public void setDescription(String description)
 	{
 		this.description = description;
-	}
-
-	public AgendaItem getAgendaItem()
-	{
-		return agendaItem;
-	}
-
-	public void setAgendaItem(AgendaItem agendaItem)
-	{
-		this.agendaItem = agendaItem;
 	}
 
 	public Integer getVoteCountYes()
@@ -140,10 +122,18 @@ public class Ballot implements DbData
 	}
 
 	@Override
-	public FormData getAsFormData()
+	public DbData getAsDbData()
 	{
 
-		return new BallotFormData(title, description, voteCountYes, voteCountNo, voteCountAbstention);
+		return new Ballot( title, description, voteCountYes, voteCountNo, voteCountAbstention);
+	}
+
+	@Override
+	public String printOut()
+	{
+
+		return title + " " + description + " " + voteCountYes + " " + voteCountNo + " "
+				+ voteCountAbstention;
 	}
 
 	// public Request getRequest() {

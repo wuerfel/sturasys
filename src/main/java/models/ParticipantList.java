@@ -27,7 +27,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class ParticipantList {
+public class ParticipantList
+{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,30 +37,35 @@ public class ParticipantList {
 	/**
 	 * the agenda of the meeting to which the participants participated
 	 */
-	@OneToOne(mappedBy="participants")
+	@OneToOne(mappedBy = "participants")
 	private Protocol protocol;
 	/**
 	 * holds the respective participants
 	 */
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="participantList")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "participantList")
 	private List<ParticipantListItem> items;
 
-	public ParticipantList() {
+	public ParticipantList()
+	{
 	}
 
-	public Protocol getProtocol() {
+	public Protocol getProtocol()
+	{
 		return protocol;
 	}
 
-	public void setProtocol(Protocol protocol) {
+	public void setProtocol(Protocol protocol)
+	{
 		this.protocol = protocol;
 	}
 
-	public List<ParticipantListItem> getItems() {
+	public List<ParticipantListItem> getItems()
+	{
 		return items;
 	}
 
-	public void setItems(List<ParticipantListItem> items) {
+	public void setItems(List<ParticipantListItem> items)
+	{
 		this.items = items;
 	}
 

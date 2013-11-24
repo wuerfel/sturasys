@@ -18,56 +18,55 @@ package models.forms;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 
 import models.Account;
 import models.Application;
+import models.DbData;
 import models.ParticipantListItem;
 import models.User;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.mindrot.jbcrypt.BCrypt;
 
-public class UserFormData
+public class UserFormData implements FormData
 {
 
+	private List<Account> accounts;
+	private List<Application> applications;
+	/**
+	 * the user's city
+	 */
+	@NotEmpty
+	private String city;
+	/**
+	 * the user's email-address
+	 */
+	@NotEmpty
+	@Email
+	private String email;
 	/**
 	 * the user's first name
 	 */
 	@NotEmpty
 	private String firstName;
-	/**
-	 * the user's surname
-	 */
-	@NotEmpty
-	private String surName;
+
 	/**
 	 * the user's matricle number
 	 */
 	@NotEmpty
 	private String matricleNo;
-	/**
-	 * the user's role (applicant, stura-member, etc.)
-	 */
-	private Integer role;
+	private List<ParticipantListItem> participationList;
 	/**
 	 * the user's password
 	 */
 	@NotEmpty
 	private String password;
-
 	/**
 	 * the user's password repetition
 	 */
 	@NotEmpty
 	private String password2;
-	/**
-	 * the user's telephone number
-	 */
-	@NotEmpty
-	private String telephoneNo;
 	/**
 	 * the user's postal code
 	 */
@@ -75,35 +74,40 @@ public class UserFormData
 	@Pattern(regexp = "\\d+")
 	private String postal;
 	/**
+	 * the user's role (applicant, stura-member, etc.)
+	 */
+	private Integer role;
+	/**
 	 * the user's street name
 	 */
 	@NotEmpty
 	private String street;
-	/**
-	 * the user's city
-	 */
-	@NotEmpty
-	private String city;
+
 	/**
 	 * the user's street number
 	 */
 	@NotEmpty
 	private String streetNo;
+
 	/**
-	 * the user's email-address
+	 * the user's surname
 	 */
 	@NotEmpty
-	@Email
-	private String email;
+	private String surName;
 
-	public List<Application> getApplications()
+	/**
+	 * the user's telephone number
+	 */
+	@NotEmpty
+	private String telephoneNo;
+
+	public UserFormData()
 	{
-		return applications;
 	}
 
-	public void setApplications(List<Application> applications)
+	public boolean checkPw(String passWord)
 	{
-		this.applications = applications;
+		return BCrypt.checkpw(passWord, this.getPassword());
 	}
 
 	public List<Account> getAccounts()
@@ -111,108 +115,33 @@ public class UserFormData
 		return accounts;
 	}
 
-	public void setAccounts(List<Account> accounts)
+	public List<Application> getApplications()
 	{
+		return applications;
+	}
+
+
+	public UserFormData(List<Account> accounts, List<Application> applications, String city, String email,
+			String firstName, String matricleNo, List<ParticipantListItem> participationList, String password,
+			String password2, String postal, Integer role, String street, String streetNo, String surName,
+			String telephoneNo)
+	{
+		super();
 		this.accounts = accounts;
-	}
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "applicant")
-	private List<Application> applications;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	private List<Account> accounts;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "participant")
-	private List<ParticipantListItem> participationList;
-
-	public String getFirstName()
-	{
-		return firstName;
-	}
-
-	public void setFirstName(String firstName)
-	{
+		this.applications = applications;
+		this.city = city;
+		this.email = email;
 		this.firstName = firstName;
-	}
-
-	public String getSurName()
-	{
-		return surName;
-	}
-
-	public void setSurName(String surName)
-	{
-		this.surName = surName;
-	}
-
-	public String getMatricleNo()
-	{
-		return matricleNo;
-	}
-
-	public void setMatricleNo(String matricleNo)
-	{
 		this.matricleNo = matricleNo;
-	}
-
-	public Integer getRole()
-	{
-		return role;
-	}
-
-	public void setRole(Integer role)
-	{
-		this.role = role;
-	}
-
-	public String getPassword()
-	{
-		return password;
-	}
-
-	public void setPassword(String password)
-	{
+		this.participationList = participationList;
 		this.password = password;
-	}
-
-	public String getPassword2()
-	{
-		return password2;
-	}
-
-	public void setPassword2(String password2)
-	{
 		this.password2 = password2;
-	}
-
-	public String getTelephoneNo()
-	{
-		return telephoneNo;
-	}
-
-	public void setTelephoneNo(String telephoneNo)
-	{
-		this.telephoneNo = telephoneNo;
-	}
-
-	public String getPostal()
-	{
-		return postal;
-	}
-
-	public void setPostal(String postal)
-	{
 		this.postal = postal;
-	}
-
-	public String getStreet()
-	{
-		return street;
-	}
-
-	public void setStreet(String street)
-	{
+		this.role = role;
 		this.street = street;
+		this.streetNo = streetNo;
+		this.surName = surName;
+		this.telephoneNo = telephoneNo;
 	}
 
 	public String getCity()
@@ -220,9 +149,49 @@ public class UserFormData
 		return city;
 	}
 
-	public void setCity(String city)
+	public String getEmail()
 	{
-		this.city = city;
+		return email;
+	}
+
+	public String getFirstName()
+	{
+		return firstName;
+	}
+
+	public String getMatricleNo()
+	{
+		return matricleNo;
+	}
+
+	public List<ParticipantListItem> getParticipationList()
+	{
+		return participationList;
+	}
+
+	public String getPassword()
+	{
+		return password;
+	}
+
+	public String getPassword2()
+	{
+		return password2;
+	}
+
+	public String getPostal()
+	{
+		return postal;
+	}
+
+	public Integer getRole()
+	{
+		return role;
+	}
+
+	public String getStreet()
+	{
+		return street;
 	}
 
 	public String getStreetNo()
@@ -230,23 +199,14 @@ public class UserFormData
 		return streetNo;
 	}
 
-	public void setStreetNo(String streetNo)
+	public String getSurName()
 	{
-		this.streetNo = streetNo;
+		return surName;
 	}
 
-	public UserFormData()
+	public String getTelephoneNo()
 	{
-	}
-
-	public String getEmail()
-	{
-		return email;
-	}
-
-	public void setEmail(String email)
-	{
-		this.email = email;
+		return telephoneNo;
 	}
 
 	public void hashPassword(String plainPass)
@@ -255,22 +215,88 @@ public class UserFormData
 		this.setPassword(crypt);
 	}
 
-	public boolean checkPw(String passWord)
-	{
-		return BCrypt.checkpw(passWord, this.getPassword());
-	}
-
 	public String printOut()
 	{
 		return firstName + ", " + surName + ", " + matricleNo + ", " + role + ", " + password + ", ";
 	}
 
-	/**
-	 * Returns this object as an user-object
-	 * 
-	 * @return the form-data as user
-	 */
-	public User getAsUser()
+	public void setAccounts(List<Account> accounts)
+	{
+		this.accounts = accounts;
+	}
+
+	public void setApplications(List<Application> applications)
+	{
+		this.applications = applications;
+	}
+
+	public void setCity(String city)
+	{
+		this.city = city;
+	}
+
+	public void setEmail(String email)
+	{
+		this.email = email;
+	}
+
+	public void setFirstName(String firstName)
+	{
+		this.firstName = firstName;
+	}
+
+	public void setMatricleNo(String matricleNo)
+	{
+		this.matricleNo = matricleNo;
+	}
+
+	public void setParticipationList(List<ParticipantListItem> participationList)
+	{
+		this.participationList = participationList;
+	}
+
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
+
+	public void setPassword2(String password2)
+	{
+		this.password2 = password2;
+	}
+
+	public void setPostal(String postal)
+	{
+		this.postal = postal;
+	}
+
+	public void setRole(Integer role)
+	{
+		this.role = role;
+	}
+
+	public void setStreet(String street)
+	{
+		this.street = street;
+	}
+
+	public void setStreetNo(String streetNo)
+	{
+		this.streetNo = streetNo;
+	}
+
+	public void setSurName(String surName)
+	{
+		this.surName = surName;
+	}
+
+	public void setTelephoneNo(String telephoneNo)
+	{
+		this.telephoneNo = telephoneNo;
+	}
+
+	@Override
+	public DbData getAsDbData()
 	{
 		User user = new User();
 
@@ -286,7 +312,6 @@ public class UserFormData
 		user.setTelephoneNo(telephoneNo);
 
 		return user;
-
 	}
 
 }

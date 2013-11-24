@@ -25,8 +25,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import models.forms.AgendaFormData;
+import models.forms.FormData;
+
 @Entity
-public class Agenda
+public class Agenda implements DbData
 {
 
 	@Id
@@ -41,7 +44,7 @@ public class Agenda
 	 */
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "agenda")
 	private List<AgendaItem> items;
-	
+
 	public String getPlace()
 	{
 		return place;
@@ -64,6 +67,17 @@ public class Agenda
 
 	public Agenda()
 	{
+	}
+
+	public Agenda(String place)
+	{
+		this.place = place;
+	}
+
+	@Override
+	public FormData getAsFormData()
+	{
+		return new AgendaFormData(place);
 	}
 
 }

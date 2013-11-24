@@ -22,18 +22,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import models.forms.AccountFormData;
+import models.forms.FormData;
+
 @Entity
-public class Account {
+public class Account implements DbData
+{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-	
+
 	/**
-	 * the number of this bank account 
+	 * the number of this bank account
 	 */
 	private long accountNumber;
-	
+
 	/**
 	 * the bank identifier code
 	 */
@@ -52,51 +56,77 @@ public class Account {
 	/**
 	 * the user related to this account
 	 */
-	
+
 	@ManyToOne
 	private User user;
 
-	public long getAccountNumber() {
+	public long getAccountNumber()
+	{
 		return accountNumber;
 	}
 
-	public void setAccountNumber(long accountNumber) {
+	public void setAccountNumber(long accountNumber)
+	{
 		this.accountNumber = accountNumber;
 	}
 
-	public String getBankCode() {
+	public String getBankCode()
+	{
 		return bankCode;
 	}
 
-	public void setBankCode(String bankCode) {
+	public void setBankCode(String bankCode)
+	{
 		this.bankCode = bankCode;
 	}
 
-	public String getBank() {
+	public String getBank()
+	{
 		return bank;
 	}
 
-	public void setBank(String bank) {
+	public void setBank(String bank)
+	{
 		this.bank = bank;
 	}
 
-	public String getIban() {
+	public String getIban()
+	{
 		return iban;
 	}
 
-	public void setIban(String iban) {
+	public void setIban(String iban)
+	{
 		this.iban = iban;
 	}
 
-	public User getUser() {
+	public User getUser()
+	{
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(User user)
+	{
 		this.user = user;
 	}
 
-	public Account() {
+	public Account()
+	{
+	}
+
+	public Account(long accNum, String bank, String bankCode, String iban)
+	{
+		this.accountNumber = accNum;
+		this.bank = bank;
+		this.bankCode = bankCode;
+		this.iban = iban;
+	}
+
+	@Override
+	public FormData getAsFormData()
+	{
+		AccountFormData accFormData = new AccountFormData(accountNumber, bank, bankCode, iban);
+		return accFormData;
 	}
 
 }

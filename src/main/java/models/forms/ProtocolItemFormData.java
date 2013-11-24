@@ -14,33 +14,21 @@
  * limitations under the License.
  */
 
-package models;
+package models.forms;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import models.DbData;
+import models.ProtocolItem;
 
-import models.forms.FormData;
-import models.forms.ProtocolItemFormData;
-
-@Entity
-public class ProtocolItem implements DbData
+public class ProtocolItemFormData implements FormData
 {
 
-	public ProtocolItem(String transcript)
+	public ProtocolItemFormData(String transcript)
 	{
 		super();
 		this.transcript = transcript;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-	@ManyToOne
-	private Protocol protocol;
+	private ProtocolFormData protocol;
 	/**
 	 * the transcript of the agenda item
 	 */
@@ -48,15 +36,15 @@ public class ProtocolItem implements DbData
 	/**
 	 * the agenda item the protocol refers to
 	 */
-	@OneToOne
-	private AgendaItem agendaItem;
 
-	public Protocol getProtocol()
+	private AgendaItemFormData agendaItem;
+
+	public ProtocolFormData getProtocol()
 	{
 		return protocol;
 	}
 
-	public void setProtocol(Protocol protocol)
+	public void setProtocol(ProtocolFormData protocol)
 	{
 		this.protocol = protocol;
 	}
@@ -71,24 +59,31 @@ public class ProtocolItem implements DbData
 		this.transcript = transcript;
 	}
 
-	public AgendaItem getAgendaItem()
+	public AgendaItemFormData getAgendaItem()
 	{
 		return agendaItem;
 	}
 
-	public void setAgendaItem(AgendaItem agendaItem)
+	public void setAgendaItem(AgendaItemFormData agendaItem)
 	{
 		this.agendaItem = agendaItem;
 	}
 
-	public ProtocolItem()
+	public ProtocolItemFormData()
 	{
 	}
 
 	@Override
-	public FormData getAsFormData()
+	public DbData getAsDbData()
 	{
-		return new ProtocolItemFormData(transcript);
+
+		return new ProtocolItem(transcript);
+	}
+
+	@Override
+	public String printOut()
+	{
+		return transcript;
 	}
 
 }
