@@ -8,21 +8,36 @@
     <a class="navbar-brand" href="#">SturaSys</a>
     <div class="nav-collapse collapse navbar-inverse-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="${contextPath}/">Home</a></li>
-        <li class="dropdown">
+        <li><a href="${contextPath}/">Home</a></li>
+        <li class="dropdown" role="menu" aria-labelledby="dropdownForms">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forms<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="${contextPath}/account">${i18n("accountForm_Title")}</a></li>
-                  <li><a href="${contextPath}/application">${i18n("applicationForm_Title")}</a></li>
-                  <li><a href="${contextPath}/financeplan">${i18n("financePlanForm_Title")}</a></li>
-                  <li><a href="${contextPath}/agenda">${i18n("agendaForm_Title")}</a></li>
-                  <li><a href="${contextPath}/agendaItem">${i18n("agendaItemForm_Title")}</a></li>
-                  <li><a href="${contextPath}/decision">${i18n("decisionForm_Title")}</a></li>
-                  <li><a href="${contextPath}/protocol">${i18n("protocolForm_Title")}</a></li>
-                  <li><a href="${contextPath}/protocolItem">${i18n("protocolItemForm_Title")}</a></li>
-                  <li><a href="${contextPath}/ballot">${i18n("ballotForm_Title")}</a></li>
-                  <li><a href="${contextPath}/participantList">${i18n("participantListForm_Title")}</a></li>
-                  <li><a href="${contextPath}/participantListItem">${i18n("participantListItemForm_Title")}</a></li>
+                  <li class="dropdown-submenu"><a href="#" class="dropdown2-toggle" data-toggle="dropdown2">${i18n("headerMenu_Label_Agenda")}</a>
+	                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown2">
+	                  	  <li><a href="${contextPath}/agenda">${i18n("agendaForm_Title")}</a></li>
+		                  <li><a href="${contextPath}/agendaItem">${i18n("agendaItemForm_Title")}</a></li>
+		                  <li><a href="${contextPath}/decision">${i18n("decisionForm_Title")}</a></li>
+			              <li role="presentation"><a href="${contextPath}/protocol">${i18n("protocolForm_Title")}</a></li>
+		                  <li role="presentation"><a href="${contextPath}/protocolItem">${i18n("protocolItemForm_Title")}</a></li>
+			              <li><a href="${contextPath}/participantList">${i18n("participantListForm_Title")}</a></li>
+		                  <li><a href="${contextPath}/participantListItem">${i18n("participantListItemForm_Title")}</a></li>
+			              <li><a href="${contextPath}/ballot">${i18n("ballotForm_Title")}</a></li>
+	                  </ul>
+	              </li>
+
+	              <li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown4">${i18n("headerMenu_Label_Application")}</a>
+	                  <ul class="dropdown-menu">
+	                  	  <li><a href="${contextPath}/application">${i18n("applicationForm_Title")}</a></li>
+	             		 <li><a href="${contextPath}/financeplan">${i18n("financePlanForm_Title")}</a></li>
+	                  </ul>
+	              </li>
+	              
+	              <li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown4">${i18n("headerMenu_Label_User")}</a>
+	                  <ul class="dropdown-menu">
+	                  	 <li><a href="${contextPath}/user">${i18n("userForm_Title")}</a></li>
+	                     <li><a href="${contextPath}/account">${i18n("accountForm_Title")}</a></li>
+	                  </ul>
+	              </li>
                 </ul>
               </li>
       </ul>
